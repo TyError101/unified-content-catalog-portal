@@ -1,0 +1,14 @@
+<mvc:View
+    controllerName="com.rishi.contentcatalogportal.controller.Upload"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+
+    <Page id="_IDGenPage3" title="Media Upload">
+
+        <content>
+            <Text id="_IDGenText" text="Upload Module" />
+        </content>
+
+    </Page>
+
+</mvc:View>

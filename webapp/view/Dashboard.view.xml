@@ -1,0 +1,63 @@
+<mvc:View
+    controllerName="com.rishi.contentcatalogportal.controller.Dashboard"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+
+    <Page id="_IDGenPage" title="Dashboard">
+
+        <content>
+
+            <VBox id="_IDGenVBox" class="sapUiMediumMargin">
+
+                <Title id="_IDGenTitle"
+                    text="Unified Content &amp; Catalog Management Portal"
+                    level="H2" />
+
+                <HBox id="_IDGenHBox"
+                    wrap="Wrap"
+                    class="sapUiMediumMarginTop">
+
+                    <GenericTile id="_IDGenGenericTile"
+                        header="Catalog Items"
+                        class="sapUiTinyMarginEnd">
+                        <tileContent>
+                            <TileContent id="_IDGenTileContent">
+                                <content>
+                                    <NumericContent id="_IDGenNumericContent1" value="120" />
+                                </content>
+                            </TileContent>
+                        </tileContent>
+                    </GenericTile>
+
+                    <GenericTile id="_IDGenGenericTile1"
+                        header="Images Uploaded"
+                        class="sapUiTinyMarginEnd">
+                        <tileContent>
+                            <TileContent id="_IDGenTileContent1">
+                                <content>
+                                    <NumericContent id="_IDGenNumericContent2" value="350" />
+                                </content>
+                            </TileContent>
+                        </tileContent>
+                    </GenericTile>
+
+                    <GenericTile id="_IDGenGenericTile2"
+                        header="Videos Uploaded">
+                        <tileContent>
+                            <TileContent id="_IDGenTileContent2">
+                                <content>
+                                    <NumericContent id="_IDGenNumericContent3" value="48" />
+                                </content>
+                            </TileContent>
+                        </tileContent>
+                    </GenericTile>
+
+                </HBox>
+
+            </VBox>
+
+        </content>
+
+    </Page>
+
+</mvc:View>
