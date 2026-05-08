@@ -1,0 +1,97 @@
+<mvc:View
+    controllerName="com.rishi.contentcatalogportal.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+
+    <Page id="_IDGenPage2" title="Dashboard">
+
+        <content>
+
+            <VBox id="_IDGenVBox" class="sapUiMediumMargin">
+
+                <Title id="_IDGenTitle1"
+                    text="Unified Content &amp; Catalog Management Portal"
+                    level="H2" />
+
+                <HBox id="_IDGenHBox1"
+                    wrap="Wrap"
+                    class="sapUiLargeMarginTop">
+
+                    <GenericTile id="_IDGenGenericTile3"
+                        header="Catalog Items"
+                        class="sapUiTinyMarginEnd sapUiTinyMarginBottom"
+                        frameType="TwoByOne">
+
+                        <tileContent>
+
+                            <TileContent id="_IDGenTileContent3">
+
+                                <content>
+
+                                    <NumericContent id="_IDGenNumericContent4"
+                                        value="120"
+                                        valueColor="Good" />
+
+                                </content>
+
+                            </TileContent>
+
+                        </tileContent>
+
+                    </GenericTile>
+
+                    <GenericTile id="_IDGenGenericTile4"
+                        header="Images Uploaded"
+                        class="sapUiTinyMarginEnd sapUiTinyMarginBottom"
+                        frameType="TwoByOne">
+
+                        <tileContent>
+
+                            <TileContent id="_IDGenTileContent4">
+
+                                <content>
+
+                                    <NumericContent id="_IDGenNumericContent5"
+                                        value="350"
+                                        valueColor="Neutral" />
+
+                                </content>
+
+                            </TileContent>
+
+                        </tileContent>
+
+                    </GenericTile>
+
+                    <GenericTile id="_IDGenGenericTile5"
+                        header="Videos Uploaded"
+                        class="sapUiTinyMarginBottom"
+                        frameType="TwoByOne">
+
+                        <tileContent>
+
+                            <TileContent id="_IDGenTileContent5">
+
+                                <content>
+
+                                    <NumericContent id="_IDGenNumericContent6"
+                                        value="48"
+                                        valueColor="Critical" />
+
+                                </content>
+
+                            </TileContent>
+
+                        </tileContent>
+
+                    </GenericTile>
+
+                </HBox>
+
+            </VBox>
+
+        </content>
+
+    </Page>
+
+</mvc:View>

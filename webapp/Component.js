@@ -16,14 +16,21 @@ sap.ui.define([
 
             UIComponent.prototype.init.apply(this, arguments);
 
+            // Device model
             this.setModel(models.createDeviceModel(), "device");
 
-            // Load Catalog Data
+            // Catalog model
             var oCatalogModel = new JSONModel();
-            oCatalogModel.loadData(sap.ui.require.toUrl("com/rishi/contentcatalogportal/model/catalogData.json"));
+
+            oCatalogModel.loadData(
+                sap.ui.require.toUrl(
+                    "com/rishi/contentcatalogportal/model/catalogData.json"
+                )
+            );
 
             this.setModel(oCatalogModel, "catalog");
 
         }
+
     });
 });

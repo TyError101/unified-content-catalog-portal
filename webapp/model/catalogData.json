@@ -1,0 +1,22 @@
+{
+  "items": [
+    {
+      "id": "P1001",
+      "name": "Marketing Banner",
+      "category": "Image",
+      "createdDate": "2026-05-08"
+    },
+    {
+      "id": "P1002",
+      "name": "Product Demo Video",
+      "category": "Video",
+      "createdDate": "2026-05-09"
+    },
+    {
+      "id": "P1003",
+      "name": "Training Brochure",
+      "category": "Document",
+      "createdDate": "2026-05-10"
+    }
+  ]
+}

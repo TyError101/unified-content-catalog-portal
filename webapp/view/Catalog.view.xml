@@ -1,0 +1,70 @@
+<mvc:View
+    controllerName="com.rishi.contentcatalogportal.controller.Catalog"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+
+    <Page id="_IDGenPage" title="Catalog Management">
+
+        <headerContent>
+
+            <SearchField id="_IDGenSearchField"
+                width="250px"
+                placeholder="Search catalog..." />
+
+            <Button id="_IDGenButton"
+                text="Add Item"
+                icon="sap-icon://add"
+                type="Emphasized" />
+
+        </headerContent>
+
+        <content>
+
+            <Table
+                id="catalogTable"
+                items="{catalog>/items}">
+
+                <columns>
+
+                    <Column id="_IDGenColumn">
+                        <Text id="_IDGenText1" text="ID" />
+                    </Column>
+
+                    <Column id="_IDGenColumn1">
+                        <Text id="_IDGenText3" text="Name" />
+                    </Column>
+
+                    <Column id="_IDGenColumn2">
+                        <Text id="_IDGenText4" text="Category" />
+                    </Column>
+
+                    <Column id="_IDGenColumn3">
+                        <Text id="_IDGenText5" text="Created Date" />
+                    </Column>
+
+                </columns>
+
+                <items>
+
+                    <ColumnListItem id="_IDGenColumnListItem1">
+
+                        <cells>
+
+                            <Text id="_IDGenText6" text="{catalog>id}" />
+                            <Text id="_IDGenText7" text="{catalog>name}" />
+                            <Text id="_IDGenText8" text="{catalog>category}" />
+                            <Text id="_IDGenText9" text="{catalog>createdDate}" />
+
+                        </cells>
+
+                    </ColumnListItem>
+
+                </items>
+
+            </Table>
+
+        </content>
+
+    </Page>
+
+</mvc:View>
