@@ -1,26 +1,29 @@
 sap.ui.define([
     "sap/ui/core/UIComponent",
-    "com/rishi/contentcatalogportal/model/models"
-], (UIComponent, models) => {
+    "sap/ui/Device",
+    "com/rishi/contentcatalogportal/model/models",
+    "sap/ui/model/json/JSONModel"
+], function (UIComponent, Device, models, JSONModel) {
     "use strict";
 
     return UIComponent.extend("com.rishi.contentcatalogportal.Component", {
+
         metadata: {
-            manifest: "json",
-            interfaces: [
-                "sap.ui.core.IAsyncContentCreation"
-            ]
+            manifest: "json"
         },
 
-        init() {
-            // call the base component's init function
+        init: function () {
+
             UIComponent.prototype.init.apply(this, arguments);
 
-            // set the device model
             this.setModel(models.createDeviceModel(), "device");
 
-            // enable routing
-            this.getRouter().initialize();
+            // Load Catalog Data
+            var oCatalogModel = new JSONModel();
+            oCatalogModel.loadData(sap.ui.require.toUrl("com/rishi/contentcatalogportal/model/catalogData.json"));
+
+            this.setModel(oCatalogModel, "catalog");
+
         }
     });
 });

@@ -13,20 +13,17 @@
 
                 <tnt:NavigationList id="_IDGenNavigationList">
 
-                    <tnt:NavigationListItem id="_IDGenNavigationListItem1"
+                    <tnt:NavigationListItem id="_IDGenNavigationListItem"
                         text="Dashboard"
-                        icon="sap-icon://home"
-                        select=".onNavToDashboard" />
+                        icon="sap-icon://home" />
+
+                    <tnt:NavigationListItem id="_IDGenNavigationListItem1"
+                        text="Catalog"
+                        icon="sap-icon://table-view" />
 
                     <tnt:NavigationListItem id="_IDGenNavigationListItem2"
-                        text="Catalog"
-                        icon="sap-icon://table-view"
-                        select=".onNavToCatalog" />
-
-                    <tnt:NavigationListItem id="_IDGenNavigationListItem3"
                         text="Upload Media"
-                        icon="sap-icon://upload"
-                        select=".onNavToUpload" />
+                        icon="sap-icon://upload" />
 
                 </tnt:NavigationList>
 
@@ -37,13 +34,24 @@
         <!-- Main Content -->
         <tnt:mainContents>
 
-            <NavContainer id="navContainer">
+            <Page id="_IDGenPage" title="Dashboard">
 
-                <mvc:XMLView
-                    id="dashboardView"
-                    viewName="com.rishi.contentcatalogportal.view.Dashboard" />
+                <content>
 
-            </NavContainer>
+                    <VBox id="_IDGenVBox" class="sapUiMediumMargin">
+
+                        <Title id="_IDGenTitle"
+                            text="Unified Content &amp; Catalog Management Portal"
+                            level="H2" />
+
+                        <Text id="_IDGenText15"
+                            text="SAPUI5 enterprise application initialized successfully." />
+
+                    </VBox>
+
+                </content>
+
+            </Page>
 
         </tnt:mainContents>
 
