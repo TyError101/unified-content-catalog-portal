@@ -38,14 +38,97 @@
 
                 <content>
 
-                    <VBox id="_IDGenVBox" class="sapUiMediumMargin">
+                    <VBox id="_IDGenVBox2" class="sapUiMediumMargin">
 
                         <Title id="_IDGenTitle"
                             text="Unified Content &amp; Catalog Management Portal"
                             level="H2" />
 
-                        <Text id="_IDGenText15"
+                        <Text id="_IDGenText14"
                             text="SAPUI5 enterprise application initialized successfully." />
+
+                        <!-- Dashboard Tiles -->
+
+                        <HBox id="_IDGenHBox"
+                            wrap="Wrap"
+                            class="sapUiLargeMarginTop">
+
+                            <!-- Tile 1 -->
+
+                            <GenericTile id="_IDGenGenericTile"
+                                header="Catalog Items"
+                                class="sapUiTinyMarginEnd sapUiTinyMarginBottom"
+                                frameType="TwoByOne">
+
+                                <tileContent>
+
+                                    <TileContent id="_IDGenTileContent">
+
+                                        <content>
+
+                                            <NumericContent id="_IDGenNumericContent"
+                                                value="120"
+                                                valueColor="Good" />
+
+                                        </content>
+
+                                    </TileContent>
+
+                                </tileContent>
+
+                            </GenericTile>
+
+                            <!-- Tile 2 -->
+
+                            <GenericTile id="_IDGenGenericTile1"
+                                header="Images Uploaded"
+                                class="sapUiTinyMarginEnd sapUiTinyMarginBottom"
+                                frameType="TwoByOne">
+
+                                <tileContent>
+
+                                    <TileContent id="_IDGenTileContent1">
+
+                                        <content>
+
+                                            <NumericContent id="_IDGenNumericContent1"
+                                                value="350"
+                                                valueColor="Neutral" />
+
+                                        </content>
+
+                                    </TileContent>
+
+                                </tileContent>
+
+                            </GenericTile>
+
+                            <!-- Tile 3 -->
+
+                            <GenericTile id="_IDGenGenericTile2"
+                                header="Videos Uploaded"
+                                class="sapUiTinyMarginBottom"
+                                frameType="TwoByOne">
+
+                                <tileContent>
+
+                                    <TileContent id="_IDGenTileContent2">
+
+                                        <content>
+
+                                            <NumericContent id="_IDGenNumericContent2"
+                                                value="48"
+                                                valueColor="Critical" />
+
+                                        </content>
+
+                                    </TileContent>
+
+                                </tileContent>
+
+                            </GenericTile>
+
+                        </HBox>
 
                     </VBox>
 
