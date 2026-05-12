@@ -15,6 +15,11 @@
 
                     <ToolbarSpacer id="_IDGenToolbarSpacer" />
 
+                    <SearchField id="_IDGenSearchField"
+                        width="250px"
+                        liveChange="onSearch"
+                        placeholder="Search item..." />
+
                     <Button id="_IDGenButton"
                         text="Add Item"
                         type="Emphasized"

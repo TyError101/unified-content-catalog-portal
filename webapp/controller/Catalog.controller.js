@@ -1,8 +1,16 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/core/Fragment",
-    "sap/ui/model/json/JSONModel"
-], function (Controller, Fragment, JSONModel) {
+    "sap/ui/model/json/JSONModel",
+    "sap/ui/model/Filter",
+    "sap/ui/model/FilterOperator"
+], function (
+    Controller,
+    Fragment,
+    JSONModel,
+    Filter,
+    FilterOperator
+) {
     "use strict";
 
     return Controller.extend("com.rishi.contentcatalogportal.controller.Catalog", {
@@ -91,6 +99,30 @@ sap.ui.define([
             aItems.splice(iIndex, 1);
 
             oModel.setProperty("/items", aItems);
+        },
+
+        onSearch: function (oEvent) {
+
+            var sValue = oEvent.getParameter("newValue");
+
+            var oTable = this.byId("catalogTable");
+
+            var oBinding = oTable.getBinding("items");
+
+            var aFilters = [];
+
+            if (sValue) {
+
+                aFilters.push(
+                    new Filter(
+                        "name",
+                        FilterOperator.Contains,
+                        sValue
+                    )
+                );
+            }
+
+            oBinding.filter(aFilters);
         }
 
     });
