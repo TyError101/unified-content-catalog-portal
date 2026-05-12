@@ -72,6 +72,25 @@ sap.ui.define([
 
             aInputs[0].setValue("");
             aInputs[1].setValue("");
+        },
+
+        onDeleteItem: function (oEvent) {
+
+            var oModel = this.getView().getModel("catalog");
+
+            var aItems = oModel.getProperty("/items");
+
+            var oItem = oEvent.getSource().getParent();
+
+            var oContext = oItem.getBindingContext("catalog");
+
+            var sPath = oContext.getPath();
+
+            var iIndex = parseInt(sPath.split("/")[2]);
+
+            aItems.splice(iIndex, 1);
+
+            oModel.setProperty("/items", aItems);
         }
 
     });
