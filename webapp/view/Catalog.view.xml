@@ -3,65 +3,66 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m">
 
-    <Page id="_IDGenPage" title="Catalog Management">
-
-        <headerContent>
-
-            <SearchField id="_IDGenSearchField"
-                width="250px"
-                placeholder="Search catalog..." />
-
-            <Button id="_IDGenButton"
-                text="Add Item"
-                icon="sap-icon://add"
-                type="Emphasized" />
-
-        </headerContent>
+    <Page id="_IDGenPage1" title="Catalog Management">
 
         <content>
 
-            <Table
-                id="catalogTable"
-                items="{catalog>/items}">
+            <VBox id="_IDGenVBox2" class="sapUiMediumMargin">
 
-                <columns>
+                <Toolbar id="_IDGenToolbar">
 
-                    <Column id="_IDGenColumn">
-                        <Text id="_IDGenText1" text="ID" />
-                    </Column>
+                    <Title id="_IDGenTitle" text="Catalog Items" />
 
-                    <Column id="_IDGenColumn1">
-                        <Text id="_IDGenText3" text="Name" />
-                    </Column>
+                    <ToolbarSpacer id="_IDGenToolbarSpacer" />
 
-                    <Column id="_IDGenColumn2">
-                        <Text id="_IDGenText4" text="Category" />
-                    </Column>
+                    <Button id="_IDGenButton"
+                        text="Add Item"
+                        type="Emphasized"
+                        press="onOpenDialog" />
 
-                    <Column id="_IDGenColumn3">
-                        <Text id="_IDGenText5" text="Created Date" />
-                    </Column>
+                </Toolbar>
 
-                </columns>
+                <Table
+                    id="catalogTable"
+                    items="{catalog>/items}">
 
-                <items>
+                    <columns>
 
-                    <ColumnListItem id="_IDGenColumnListItem1">
+                        <Column id="_IDGenColumn">
+                            <Text id="_IDGenText" text="ID" />
+                        </Column>
 
-                        <cells>
+                        <Column id="_IDGenColumn1">
+                            <Text id="_IDGenText1" text="Name" />
+                        </Column>
 
-                            <Text id="_IDGenText6" text="{catalog>id}" />
-                            <Text id="_IDGenText7" text="{catalog>name}" />
-                            <Text id="_IDGenText8" text="{catalog>category}" />
-                            <Text id="_IDGenText9" text="{catalog>createdDate}" />
+                        <Column id="_IDGenColumn2">
+                            <Text id="_IDGenText2" text="Category" />
+                        </Column>
 
-                        </cells>
+                    </columns>
 
-                    </ColumnListItem>
+                    <items>
 
-                </items>
+                        <ColumnListItem id="_IDGenColumnListItem1">
 
-            </Table>
+                            <cells>
+
+                                <Text id="_IDGenText3" text="{catalog>id}" />
+
+                                <Text id="_IDGenText4" text="{catalog>name}" />
+
+                                <Text id="_IDGenText5" text="{catalog>category}" />
+
+                            </cells>
+
+                        </ColumnListItem>
+
+                    </items>
+
+                </Table>
+
+            </VBox>
 
         </content>
 

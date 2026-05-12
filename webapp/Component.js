@@ -22,11 +22,7 @@ sap.ui.define([
             // Catalog model
             var oCatalogModel = new JSONModel();
 
-            oCatalogModel.loadData(
-                sap.ui.require.toUrl(
-                    "com/rishi/contentcatalogportal/model/catalogData.json"
-                )
-            );
+            oCatalogModel.loadData("model/catalogData.json");
 
             this.setModel(oCatalogModel, "catalog");
 
