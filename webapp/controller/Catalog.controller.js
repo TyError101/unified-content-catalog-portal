@@ -31,6 +31,8 @@ sap.ui.define([
             var oModel = new JSONModel(oData);
 
             this.getView().setModel(oModel, "catalog");
+
+            this.editIndex = null;
         },
 
         onOpenDialog: async function () {
@@ -65,14 +67,27 @@ sap.ui.define([
 
             var sName = aInputs[1].getValue();
 
+            var sCategory = sap.ui.getCore()
+                .byId("categorySelect")
+                .getSelectedKey();
+
             var oNewItem = {
 
                 id: sId,
                 name: sName,
-                category: "General"
+                category: sCategory
             };
 
-            aItems.push(oNewItem);
+            if (this.editIndex !== null) {
+
+                aItems[this.editIndex] = oNewItem;
+
+                this.editIndex = null;
+
+            } else {
+
+                aItems.push(oNewItem);
+            }
 
             oModel.setProperty("/items", aItems);
 
@@ -100,6 +115,40 @@ sap.ui.define([
 
             oModel.setProperty("/items", aItems);
         },
+
+        onEditItem: function (oEvent) {
+
+            var oItem = oEvent.getSource().getParent();
+
+            var oContext = oItem.getBindingContext("catalog");
+
+            var sPath = oContext.getPath();
+
+            this.editIndex = parseInt(sPath.split("/")[2]);
+
+            var oModel = this.getView().getModel("catalog");
+
+            var aItems = oModel.getProperty("/items");
+
+            var oData = aItems[this.editIndex];
+
+            this.onOpenDialog();
+
+            setTimeout(function () {
+
+                var aInputs = this.oDialog.getContent()[0].getItems();
+
+                aInputs[0].setValue(oData.id);
+
+                aInputs[1].setValue(oData.name);
+
+                sap.ui.getCore()
+                    .byId("categorySelect")
+                    .setSelectedKey(oData.category);
+
+            }.bind(this), 100);
+        },
+
 
         onSearch: function (oEvent) {
 

@@ -13,6 +13,37 @@
                 <Input id="_IDGenInput1"
                     placeholder="Item Name"
                     class="sapUiSmallMarginTop" />
+                    
+                    <Select
+                        id="categorySelect"
+                        class="sapUiSmallMarginTop"
+                        selectedKey="General">
+
+                        <items>
+
+                            <core:Item id="_IDGenItem1"
+                                key="Image"
+                                text="Image" />
+
+                            <core:Item id="_IDGenItem2"
+                                key="Video"
+                                text="Video" />
+
+                            <core:Item id="_IDGenItem3"
+                                key="Document"
+                                text="Document" />
+
+                            <core:Item id="_IDGenItem4"
+                                key="Marketing"
+                                text="Marketing" />
+
+                            <core:Item id="_IDGenItem5"
+                                key="General"
+                                text="General" />
+
+                        </items>
+
+                    </Select>
 
             </VBox>
 

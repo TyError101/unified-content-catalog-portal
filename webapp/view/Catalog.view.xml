@@ -62,12 +62,18 @@
                                 <Text id="_IDGenText4" text="{catalog>name}" />
 
                                 <Text id="_IDGenText5" text="{catalog>category}" />
+                                <HBox id="_IDGenHBox" >
+                                    <Button id="_IDGenButton4"
+                                        text="Edit"
+                                        type="Emphasized"
+                                        press="onEditItem" />
 
-                                <Button id="_IDGenButton1"
-                                    text="Delete"
-                                    type="Reject"
-                                    press="onDeleteItem" />
-
+                                    <Button id="_IDGenButton1"
+                                        text="Delete"
+                                        type="Reject"
+                                        press="onDeleteItem"
+                                        class="sapUiTinyMarginBegin" />
+                                    </HBox>
                             </cells>
 
                         </ColumnListItem>
