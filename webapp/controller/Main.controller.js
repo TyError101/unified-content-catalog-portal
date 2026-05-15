@@ -23,26 +23,20 @@ sap.ui.define([
 
             oPageContainer.removeAllPages();
 
-            var oView;
-
-            if (sPage === "catalog") {
-
-                oView = sap.ui.xmlview({
-                    viewName: "com.rishi.contentcatalogportal.view.Catalog"
-                });
-
-            } else {
-
-                oView = sap.ui.xmlview({
-                    viewName: "com.rishi.contentcatalogportal.view.Dashboard"
-                });
-
-            }
+            var oView = sap.ui.xmlview({
+                viewName:
+                    "com.rishi.contentcatalogportal.view." + sPage
+            });
 
             oPageContainer.addPage(oView);
-            oPageContainer.to(oView);
 
-        }
+            oPageContainer.to(oView);
+        },
+
+        onUploadPress: function () {
+
+            this._loadPage("Upload");
+        },
 
     });
 });

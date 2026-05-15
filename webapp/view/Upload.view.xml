@@ -1,0 +1,43 @@
+<mvc:View
+    controllerName="com.rishi.contentcatalogportal.controller.Upload"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:unified="sap.ui.unified">
+
+    <Page id="_IDGenPage" title="Upload Media">
+
+        <content>
+
+            <VBox id="_IDGenVBox3" class="sapUiMediumMargin">
+
+                <Title id="_IDGenTitle2"
+                    text="Media Upload Center"
+                    level="H2" />
+
+                <Text id="_IDGenText7"
+                    text="Upload images, videos, and digital assets." />
+
+                <Toolbar id="_IDGenToolbar2" class="sapUiMediumMarginTop">
+
+                    <unified:FileUploader
+                        id="fileUploader"
+                        width="400px"
+                        buttonText="Choose File"
+                        change="onFileChange"
+                        fileType="jpg,jpeg,png,mp4" />
+
+                </Toolbar>
+
+                <VBox
+                    id="previewContainer"
+                    class="sapUiLargeMarginTop">
+
+                </VBox>
+
+            </VBox>
+
+        </content>
+
+    </Page>
+
+</mvc:View>

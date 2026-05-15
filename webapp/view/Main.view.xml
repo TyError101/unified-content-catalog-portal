@@ -23,6 +23,10 @@
                         text="Catalog"
                         icon="sap-icon://table-view"
                         select="onCatalogPress" />
+                    <tnt:NavigationListItem id="_IDGenNavigationListItem2"
+                        text="Upload Media"
+                        icon="sap-icon://upload"
+                        select="onUploadPress" />
 
                 </tnt:NavigationList>
 
