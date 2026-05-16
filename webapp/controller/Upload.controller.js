@@ -1,11 +1,24 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/m/Image",
-    "sap/ui/core/HTML"
-], function (Controller, Image, HTML) {
+    "sap/ui/core/HTML",
+    "sap/ui/model/json/JSONModel"
+], function (Controller, Image, HTML, JSONModel) {
     "use strict";
 
     return Controller.extend("com.rishi.contentcatalogportal.controller.Upload", {
+
+        onInit: function () {
+
+            var oData = {
+
+                uploads: []
+            };
+
+            var oModel = new JSONModel(oData);
+
+            this.getView().setModel(oModel, "upload");
+        },
 
         onFileChange: function (oEvent) {
 
@@ -17,9 +30,32 @@ sap.ui.define([
 
             var oReader = new FileReader();
 
+            var oUploadModel = this.getView().getModel("upload");
+
+            var aUploads = oUploadModel.getProperty("/uploads");
+
             var oPreviewContainer = this.byId("previewContainer");
 
             oPreviewContainer.removeAllItems();
+
+            // Upload Metadata
+
+            var oUploadData = {
+
+                fileName: oFile.name,
+
+                fileType: oFile.type,
+
+                fileSize: (oFile.size / 1024).toFixed(2) + " KB",
+
+                uploadDate: new Date().toLocaleString()
+            };
+
+            aUploads.push(oUploadData);
+
+            oUploadModel.setProperty("/uploads", aUploads);
+
+            // File Preview
 
             oReader.onload = function (e) {
 
@@ -52,7 +88,6 @@ sap.ui.define([
 
                     oPreviewContainer.addItem(oHTML);
                 }
-
             };
 
             oReader.readAsDataURL(oFile);
