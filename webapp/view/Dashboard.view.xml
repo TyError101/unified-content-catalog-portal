@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="com.rishi.contentcatalogportal.controller.Main"
+    controllerName="com.rishi.contentcatalogportal.controller.Dashboard"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m">
 
@@ -7,86 +7,32 @@
 
         <content>
 
-            <VBox id="_IDGenVBox" class="sapUiMediumMargin">
+            <VBox id="_IDGenVBox4" class="sapUiMediumMargin">
 
                 <Title id="_IDGenTitle1"
-                    text="Unified Content &amp; Catalog Management Portal"
-                    level="H2" />
+                    text="Unified Content & Catalog Management Portal"
+                    level="H1" />
 
-                <HBox id="_IDGenHBox1"
-                    wrap="Wrap"
-                    class="sapUiLargeMarginTop">
+                <Text id="_IDGenText16"
+                    text="Welcome to the SAPUI5 media and catalog management application." />
 
-                    <GenericTile id="_IDGenGenericTile3"
-                        header="Catalog Items"
-                        class="sapUiTinyMarginEnd sapUiTinyMarginBottom"
-                        frameType="TwoByOne">
+                <Panel id="_IDGenPanel"
+                    headerText="Application Modules"
+                    class="sapUiMediumMarginTop">
 
-                        <tileContent>
+                    <VBox id="_IDGenVBox5" class="sapUiSmallMargin">
 
-                            <TileContent id="_IDGenTileContent3">
+                        <Text id="_IDGenText17" text="• Catalog Management" />
 
-                                <content>
+                        <Text id="_IDGenText18" text="• Media Upload Center" />
 
-                                    <NumericContent id="_IDGenNumericContent4"
-                                        value="120"
-                                        valueColor="Good" />
+                        <Text id="_IDGenText19" text="• Upload History Tracking" />
 
-                                </content>
+                        <Text id="_IDGenText20" text="• Search and CRUD Operations" />
 
-                            </TileContent>
+                    </VBox>
 
-                        </tileContent>
-
-                    </GenericTile>
-
-                    <GenericTile id="_IDGenGenericTile4"
-                        header="Images Uploaded"
-                        class="sapUiTinyMarginEnd sapUiTinyMarginBottom"
-                        frameType="TwoByOne">
-
-                        <tileContent>
-
-                            <TileContent id="_IDGenTileContent4">
-
-                                <content>
-
-                                    <NumericContent id="_IDGenNumericContent5"
-                                        value="350"
-                                        valueColor="Neutral" />
-
-                                </content>
-
-                            </TileContent>
-
-                        </tileContent>
-
-                    </GenericTile>
-
-                    <GenericTile id="_IDGenGenericTile5"
-                        header="Videos Uploaded"
-                        class="sapUiTinyMarginBottom"
-                        frameType="TwoByOne">
-
-                        <tileContent>
-
-                            <TileContent id="_IDGenTileContent5">
-
-                                <content>
-
-                                    <NumericContent id="_IDGenNumericContent6"
-                                        value="48"
-                                        valueColor="Critical" />
-
-                                </content>
-
-                            </TileContent>
-
-                        </tileContent>
-
-                    </GenericTile>
-
-                </HBox>
+                </Panel>
 
             </VBox>
 

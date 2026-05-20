@@ -6,27 +6,49 @@ sap.ui.define([
 ], function (UIComponent, Device, models, JSONModel) {
     "use strict";
 
-    return UIComponent.extend("com.rishi.contentcatalogportal.Component", {
+    return UIComponent.extend(
+        "com.rishi.contentcatalogportal.Component",
+        {
 
-        metadata: {
-            manifest: "json"
-        },
+            metadata: {
+                manifest: "json"
+            },
 
-        init: function () {
+            init: function () {
 
-            UIComponent.prototype.init.apply(this, arguments);
+                UIComponent.prototype.init.apply(
+                    this,
+                    arguments
+                );
 
-            // Device model
-            this.setModel(models.createDeviceModel(), "device");
+                this.setModel(
+                    models.createDeviceModel(),
+                    "device"
+                );
 
-            // Catalog model
-            var oCatalogModel = new JSONModel();
+                // CATALOG MODEL
 
-            oCatalogModel.loadData("model/catalogData.json");
+                var oCatalogData = {
 
-            this.setModel(oCatalogModel, "catalog");
+                    items: [
+                        {
+                            id: "P1001",
+                            name: "Marketing Banner",
+                            category: "Image"
+                        }
+                    ]
+                };
 
+                var oCatalogModel =
+                    new JSONModel(oCatalogData);
+
+                this.setModel(
+                    oCatalogModel,
+                    "catalog"
+                );
+
+                this.getRouter().initialize();
+            }
         }
-
-    });
+    );
 });

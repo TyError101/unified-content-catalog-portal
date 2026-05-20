@@ -3,40 +3,43 @@ sap.ui.define([
 ], function (Controller) {
     "use strict";
 
-    return Controller.extend("com.rishi.contentcatalogportal.controller.Main", {
+    return Controller.extend(
+        "com.rishi.contentcatalogportal.controller.Main",
+        {
 
-        onDashboardPress: function () {
+            onDashboardPress: function () {
 
-            this._loadPage("dashboard");
+                this._loadPage("Dashboard");
+            },
 
-        },
+            onCatalogPress: function () {
 
-        onCatalogPress: function () {
+                this._loadPage("Catalog");
+            },
 
-            this._loadPage("catalog");
+            onUploadPress: function () {
 
-        },
+                this._loadPage("Upload");
+            },
 
-        _loadPage: function (sPage) {
+            _loadPage: function (sPage) {
 
-            var oPageContainer = this.byId("pageContainer");
+                var oPageContainer =
+                    this.byId("pageContainer");
 
-            oPageContainer.removeAllPages();
+                var oView =
+                    sap.ui.xmlview({
 
-            var oView = sap.ui.xmlview({
-                viewName:
-                    "com.rishi.contentcatalogportal.view." + sPage
-            });
+                        viewName:
+                            "com.rishi.contentcatalogportal.view." + sPage
+                    });
 
-            oPageContainer.addPage(oView);
+                oPageContainer.removeAllPages();
 
-            oPageContainer.to(oView);
-        },
+                oPageContainer.addPage(oView);
 
-        onUploadPress: function () {
-
-            this._loadPage("Upload");
-        },
-
-    });
+                oPageContainer.to(oView);
+            }
+        }
+    );
 });

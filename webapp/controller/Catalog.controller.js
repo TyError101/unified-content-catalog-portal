@@ -1,178 +1,212 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/core/Fragment",
-    "sap/ui/model/json/JSONModel",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator"
 ], function (
     Controller,
     Fragment,
-    JSONModel,
     Filter,
     FilterOperator
 ) {
     "use strict";
 
-    return Controller.extend("com.rishi.contentcatalogportal.controller.Catalog", {
+    return Controller.extend(
+        "com.rishi.contentcatalogportal.controller.Catalog",
+        {
 
-        onInit: function () {
+            onInit: function () {
 
-            var oData = {
-
-                items: [
-                    {
-                        id: "P1001",
-                        name: "Marketing Banner",
-                        category: "Image"
-                    }
-                ]
-            };
-
-            var oModel = new JSONModel(oData);
-
-            this.getView().setModel(oModel, "catalog");
-
-            this.editIndex = null;
-        },
-
-        onOpenDialog: async function () {
-
-            if (!this.oDialog) {
-
-                this.oDialog = await Fragment.load({
-                    name: "com.rishi.contentcatalogportal.fragments.AddItem",
-                    controller: this
-                });
-
-                this.getView().addDependent(this.oDialog);
-            }
-
-            this.oDialog.open();
-        },
-
-        onCloseDialog: function () {
-
-            this.oDialog.close();
-        },
-
-        onAddItem: function () {
-
-            var oModel = this.getView().getModel("catalog");
-
-            var aItems = oModel.getProperty("/items");
-
-            var aInputs = this.oDialog.getContent()[0].getItems();
-
-            var sId = aInputs[0].getValue();
-
-            var sName = aInputs[1].getValue();
-
-            var sCategory = sap.ui.getCore()
-                .byId("categorySelect")
-                .getSelectedKey();
-
-            var oNewItem = {
-
-                id: sId,
-                name: sName,
-                category: sCategory
-            };
-
-            if (this.editIndex !== null) {
-
-                aItems[this.editIndex] = oNewItem;
+                this.getView().setModel(
+                    this.getOwnerComponent().getModel("catalog"),
+                    "catalog"
+                );
 
                 this.editIndex = null;
+            },
 
-            } else {
+            onOpenDialog: async function () {
 
-                aItems.push(oNewItem);
-            }
+                if (!this.oDialog) {
 
-            oModel.setProperty("/items", aItems);
+                    this.oDialog =
+                        await Fragment.load({
 
-            this.oDialog.close();
+                            name:
+                                "com.rishi.contentcatalogportal.fragments.AddItem",
 
-            aInputs[0].setValue("");
-            aInputs[1].setValue("");
-        },
+                            controller: this
+                        });
 
-        onDeleteItem: function (oEvent) {
+                    this.getView().addDependent(
+                        this.oDialog
+                    );
+                }
 
-            var oModel = this.getView().getModel("catalog");
+                this.oDialog.open();
+            },
 
-            var aItems = oModel.getProperty("/items");
+            onCloseDialog: function () {
 
-            var oItem = oEvent.getSource().getParent();
+                this.oDialog.close();
+            },
 
-            var oContext = oItem.getBindingContext("catalog");
+            onAddItem: function () {
 
-            var sPath = oContext.getPath();
+                var oModel =
+                    this.getView().getModel("catalog");
 
-            var iIndex = parseInt(sPath.split("/")[2]);
+                var aItems =
+                    oModel.getProperty("/items");
 
-            aItems.splice(iIndex, 1);
+                var aInputs =
+                    this.oDialog.getContent()[0].getItems();
 
-            oModel.setProperty("/items", aItems);
-        },
+                var sId =
+                    aInputs[0].getValue();
 
-        onEditItem: function (oEvent) {
+                var sName =
+                    aInputs[1].getValue();
 
-            var oItem = oEvent.getSource().getParent();
+                var sCategory =
+                    sap.ui.getCore()
+                        .byId("categorySelect")
+                        .getSelectedKey();
 
-            var oContext = oItem.getBindingContext("catalog");
+                var oNewItem = {
 
-            var sPath = oContext.getPath();
+                    id: sId,
 
-            this.editIndex = parseInt(sPath.split("/")[2]);
+                    name: sName,
 
-            var oModel = this.getView().getModel("catalog");
+                    category: sCategory
+                };
 
-            var aItems = oModel.getProperty("/items");
+                if (this.editIndex !== null) {
 
-            var oData = aItems[this.editIndex];
+                    aItems[this.editIndex] =
+                        oNewItem;
 
-            this.onOpenDialog();
+                    this.editIndex = null;
 
-            setTimeout(function () {
+                } else {
 
-                var aInputs = this.oDialog.getContent()[0].getItems();
+                    aItems.push(oNewItem);
+                }
 
-                aInputs[0].setValue(oData.id);
-
-                aInputs[1].setValue(oData.name);
-
-                sap.ui.getCore()
-                    .byId("categorySelect")
-                    .setSelectedKey(oData.category);
-
-            }.bind(this), 100);
-        },
-
-
-        onSearch: function (oEvent) {
-
-            var sValue = oEvent.getParameter("newValue");
-
-            var oTable = this.byId("catalogTable");
-
-            var oBinding = oTable.getBinding("items");
-
-            var aFilters = [];
-
-            if (sValue) {
-
-                aFilters.push(
-                    new Filter(
-                        "name",
-                        FilterOperator.Contains,
-                        sValue
-                    )
+                oModel.setProperty(
+                    "/items",
+                    aItems
                 );
+
+                this.oDialog.close();
+
+                aInputs[0].setValue("");
+
+                aInputs[1].setValue("");
+            },
+
+            onDeleteItem: function (oEvent) {
+
+                var oModel =
+                    this.getView().getModel("catalog");
+
+                var aItems =
+                    oModel.getProperty("/items");
+
+                var oItem =
+                    oEvent.getSource().getParent();
+
+                var oContext =
+                    oItem.getBindingContext("catalog");
+
+                var sPath =
+                    oContext.getPath();
+
+                var iIndex =
+                    parseInt(sPath.split("/")[2]);
+
+                aItems.splice(iIndex, 1);
+
+                oModel.setProperty(
+                    "/items",
+                    aItems
+                );
+            },
+
+            onEditItem: function (oEvent) {
+
+                var oItem =
+                    oEvent.getSource().getParent();
+
+                var oContext =
+                    oItem.getBindingContext("catalog");
+
+                var sPath =
+                    oContext.getPath();
+
+                this.editIndex =
+                    parseInt(sPath.split("/")[2]);
+
+                var oModel =
+                    this.getView().getModel("catalog");
+
+                var aItems =
+                    oModel.getProperty("/items");
+
+                var oData =
+                    aItems[this.editIndex];
+
+                this.onOpenDialog();
+
+                setTimeout(function () {
+
+                    var aInputs =
+                        this.oDialog
+                            .getContent()[0]
+                            .getItems();
+
+                    aInputs[0].setValue(oData.id);
+
+                    aInputs[1].setValue(oData.name);
+
+                    sap.ui.getCore()
+                        .byId("categorySelect")
+                        .setSelectedKey(oData.category);
+
+                }.bind(this), 100);
+            },
+
+            onSearch: function (oEvent) {
+
+                var sValue =
+                    oEvent.getParameter("newValue");
+
+                var oTable =
+                    this.byId("catalogTable");
+
+                var oBinding =
+                    oTable.getBinding("items");
+
+                var aFilters = [];
+
+                if (sValue) {
+
+                    aFilters.push(
+
+                        new Filter(
+
+                            "name",
+
+                            FilterOperator.Contains,
+
+                            sValue
+                        )
+                    );
+                }
+
+                oBinding.filter(aFilters);
             }
-
-            oBinding.filter(aFilters);
         }
-
-    });
+    );
 });
