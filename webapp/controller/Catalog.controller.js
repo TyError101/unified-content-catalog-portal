@@ -20,6 +20,8 @@ sap.ui.define([
 
                     "catalog"
                 );
+
+                this.editIndex = null;
             },
 
             onOpenDialog: async function () {
@@ -71,21 +73,125 @@ sap.ui.define([
                         .byId("dialogSelectCategory")
                         .getSelectedKey();
 
-                var oNewItem = {
+                var oItem = {
 
                     id: sId,
                     name: sName,
                     category: sCategory
                 };
 
-                aItems.push(oNewItem);
+                // EDIT MODE
+
+                if (this.editIndex !== null) {
+
+                    aItems[this.editIndex] = oItem;
+
+                    this.editIndex = null;
+                }
+
+                // ADD MODE
+
+                else {
+
+                    aItems.push(oItem);
+                }
 
                 oModel.setProperty(
                     "/items",
                     aItems
                 );
 
+                // CLEAR FIELDS
+
+                sap.ui.getCore()
+                    .byId("dialogInputId")
+                    .setValue("");
+
+                sap.ui.getCore()
+                    .byId("dialogInputName")
+                    .setValue("");
+
+                sap.ui.getCore()
+                    .byId("dialogSelectCategory")
+                    .setSelectedKey("Image");
+
                 this.oDialog.close();
+            },
+
+            onDeleteItem: function (oEvent) {
+
+                var oModel =
+                    this.getView()
+                        .getModel("catalog");
+
+                var aItems =
+                    oModel.getProperty("/items");
+
+                var oItem =
+                    oEvent.getSource()
+                        .getParent()
+                        .getParent();
+
+                var oContext =
+                    oItem.getBindingContext("catalog");
+
+                var sPath =
+                    oContext.getPath();
+
+                var iIndex =
+                    parseInt(
+                        sPath.split("/")[2]
+                    );
+
+                aItems.splice(iIndex, 1);
+
+                oModel.setProperty(
+                    "/items",
+                    aItems
+                );
+            },
+
+            onEditItem: async function (oEvent) {
+
+                var oItem =
+                    oEvent.getSource()
+                        .getParent()
+                        .getParent();
+
+                var oContext =
+                    oItem.getBindingContext("catalog");
+
+                var sPath =
+                    oContext.getPath();
+
+                this.editIndex =
+                    parseInt(
+                        sPath.split("/")[2]
+                    );
+
+                var oModel =
+                    this.getView()
+                        .getModel("catalog");
+
+                var aItems =
+                    oModel.getProperty("/items");
+
+                var oData =
+                    aItems[this.editIndex];
+
+                await this.onOpenDialog();
+
+                sap.ui.getCore()
+                    .byId("dialogInputId")
+                    .setValue(oData.id);
+
+                sap.ui.getCore()
+                    .byId("dialogInputName")
+                    .setValue(oData.name);
+
+                sap.ui.getCore()
+                    .byId("dialogSelectCategory")
+                    .setSelectedKey(oData.category);
             }
         }
     );
