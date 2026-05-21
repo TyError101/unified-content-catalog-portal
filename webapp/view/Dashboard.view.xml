@@ -3,38 +3,11 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m">
 
-    <Page id="_IDGenPage2" title="Dashboard">
+    <Page title="Dashboard">
 
         <content>
 
-            <VBox id="_IDGenVBox4" class="sapUiMediumMargin">
-
-                <Title id="_IDGenTitle1"
-                    text="Unified Content & Catalog Management Portal"
-                    level="H1" />
-
-                <Text id="_IDGenText16"
-                    text="Welcome to the SAPUI5 media and catalog management application." />
-
-                <Panel id="_IDGenPanel"
-                    headerText="Application Modules"
-                    class="sapUiMediumMarginTop">
-
-                    <VBox id="_IDGenVBox5" class="sapUiSmallMargin">
-
-                        <Text id="_IDGenText17" text="• Catalog Management" />
-
-                        <Text id="_IDGenText18" text="• Media Upload Center" />
-
-                        <Text id="_IDGenText19" text="• Upload History Tracking" />
-
-                        <Text id="_IDGenText20" text="• Search and CRUD Operations" />
-
-                    </VBox>
-
-                </Panel>
-
-            </VBox>
+            <Text text="Dashboard Loaded Successfully" />
 
         </content>
 

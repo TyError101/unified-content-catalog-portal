@@ -7,6 +7,11 @@ sap.ui.define([
         "com.rishi.contentcatalogportal.controller.Main",
         {
 
+            onInit: function () {
+
+                this._loadPage("Dashboard");
+            },
+
             onDashboardPress: function () {
 
                 this._loadPage("Dashboard");

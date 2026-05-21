@@ -1,9 +1,12 @@
 sap.ui.define([
     "sap/ui/core/UIComponent",
     "sap/ui/Device",
-    "com/rishi/contentcatalogportal/model/models",
-    "sap/ui/model/json/JSONModel"
-], function (UIComponent, Device, models, JSONModel) {
+    "com/rishi/contentcatalogportal/model/models"
+], function (
+    UIComponent,
+    Device,
+    models
+) {
     "use strict";
 
     return UIComponent.extend(
@@ -24,27 +27,6 @@ sap.ui.define([
                 this.setModel(
                     models.createDeviceModel(),
                     "device"
-                );
-
-                // CATALOG MODEL
-
-                var oCatalogData = {
-
-                    items: [
-                        {
-                            id: "P1001",
-                            name: "Marketing Banner",
-                            category: "Image"
-                        }
-                    ]
-                };
-
-                var oCatalogModel =
-                    new JSONModel(oCatalogData);
-
-                this.setModel(
-                    oCatalogModel,
-                    "catalog"
                 );
 
                 this.getRouter().initialize();

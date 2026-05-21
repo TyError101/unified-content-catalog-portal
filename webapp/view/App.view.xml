@@ -1,17 +1,9 @@
 <mvc:View
     controllerName="com.rishi.contentcatalogportal.controller.App"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
+    xmlns="sap.m"
+    displayBlock="true">
 
-    <App id="_IDGenApp">
-
-        <pages>
-
-            <mvc:XMLView id="_IDGenXMLView1"
-                viewName="com.rishi.contentcatalogportal.view.Main" />
-
-        </pages>
-
-    </App>
+    <App id="app" />
 
 </mvc:View>

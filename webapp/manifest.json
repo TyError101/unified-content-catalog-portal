@@ -1,111 +1,186 @@
 {
   "_version": "1.84.0",
+
   "sap.app": {
     "id": "com.rishi.contentcatalogportal",
     "type": "application",
+
     "i18n": "i18n/i18n.properties",
+
     "applicationVersion": {
       "version": "0.0.1"
     },
+
     "title": "{{appTitle}}",
+
     "description": "{{appDescription}}",
+
     "resources": "resources.json",
+
     "sourceTemplate": {
       "id": "@sap/generator-fiori:basic",
       "version": "1.23.0",
       "toolsId": "c825cafb-50a1-4515-a6b7-7248de2c854f"
     },
+
     "crossNavigation": {
       "inbounds": {
+
         "catalog-manage": {
+
           "semanticObject": "catalog",
+
           "action": "manage",
+
           "title": "{{catalog-manage.flpTitle}}",
+
           "subTitle": "{{catalog-manage.flpSubtitle}}",
+
           "signature": {
+
             "parameters": {},
+
             "additionalParameters": "allowed"
           }
         }
       }
     }
   },
+
   "sap.ui": {
+
     "technology": "UI5",
+
     "icons": {
+
       "icon": "",
+
       "favIcon": "",
+
       "phone": "",
+
       "phone@2": "",
+
       "tablet": "",
+
       "tablet@2": ""
     },
+
     "deviceTypes": {
+
       "desktop": true,
+
       "tablet": true,
+
       "phone": true
     }
   },
+
   "sap.ui5": {
+
     "flexEnabled": true,
+
     "dependencies": {
+
       "minUI5Version": "1.147.2",
+
       "libs": {
+
         "sap.m": {},
-        "sap.ui.core": {}
+
+        "sap.ui.core": {},
+
+        "sap.tnt": {}
       }
     },
+
     "contentDensities": {
+
       "compact": true,
+
       "cozy": true
     },
+
     "models": {
+
       "i18n": {
+
         "type": "sap.ui.model.resource.ResourceModel",
+
         "settings": {
-          "bundleName": "com.rishi.contentcatalogportal.i18n.i18n"
+
+          "bundleName":
+            "com.rishi.contentcatalogportal.i18n.i18n"
         }
       }
     },
+
     "resources": {
+
       "css": [
         {
           "uri": "css/style.css"
         }
       ]
     },
+
     "routing": {
+
       "config": {
+
         "routerClass": "sap.m.routing.Router",
+
         "controlAggregation": "pages",
+
         "controlId": "app",
+
         "transition": "slide",
+
         "type": "View",
+
         "viewType": "XML",
-        "path": "com.rishi.contentcatalogportal.view",
+
+        "path":
+          "com.rishi.contentcatalogportal.view",
+
         "async": true,
-        "viewPath": "com.rishi.contentcatalogportal.view"
+
+        "viewPath":
+          "com.rishi.contentcatalogportal.view"
       },
+
       "routes": [
         {
           "name": "RouteMain",
+
           "pattern": ":?query:",
+
           "target": [
             "TargetMain"
           ]
         }
       ],
+
       "targets": {
+
         "TargetMain": {
+
           "id": "Main",
+
           "name": "Main"
         }
       }
     },
+
     "rootView": {
-      "viewName": "com.rishi.contentcatalogportal.view.App",
+
+      "viewName":
+        "com.rishi.contentcatalogportal.view.App",
+
       "type": "XML",
+
       "id": "App",
+
       "async": true
     }
   }
