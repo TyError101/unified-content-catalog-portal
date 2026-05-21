@@ -17,6 +17,13 @@
                         text="Catalog Items"
                         level="H2" />
 
+                    <ToolbarSpacer id="_IDGenToolbarSpacer" />
+
+                    <Button id="_IDGenButton"
+                        text="Add Item"
+                        type="Emphasized"
+                        press="onOpenDialog" />
+
                 </Toolbar>
 
                 <!-- TABLE -->
