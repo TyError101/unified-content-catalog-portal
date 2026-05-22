@@ -73,7 +73,10 @@ sap.ui.define([
                                         "image/"
                                     )
                                     ? "Image"
-                                    : "Video"
+                                    : "Video",
+
+                            thumbnail:
+                                oFile.thumbnail || ""
                         });
                     }
                 });

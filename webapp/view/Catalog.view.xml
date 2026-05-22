@@ -35,6 +35,10 @@
 
                     <columns>
 
+                        <Column id="_IDGenColumn9" width="120px">
+                            <Text id="_IDGenText25" text="Preview" />
+                        </Column>
+
                         <Column id="_IDGenColumn">
                             <Text id="_IDGenText" text="ID" />
                         </Column>
@@ -58,6 +62,12 @@
                         <ColumnListItem id="_IDGenColumnListItem">
 
                             <cells>
+
+                                <Image id="_IDGenImage"
+                                    src="{catalog>thumbnail}"
+                                    width="80px"
+                                    height="60px"
+                                    visible="{= ${catalog>thumbnail} ? true : false }" />
 
                                 <Text id="_IDGenText14" text="{catalog>id}" />
 

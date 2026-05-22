@@ -115,7 +115,9 @@ sap.ui.define([
                         new Date()
                         .toLocaleString(),
 
-                    fileURL: sFileURL
+                    fileURL: sFileURL,
+
+                    thumbnail: sFileURL
                 });
 
                 oSharedModel.setProperty(
