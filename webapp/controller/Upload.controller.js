@@ -48,6 +48,17 @@ sap.ui.define([
                     return;
                 }
 
+                /* =========================
+                   FILE URL
+                ========================== */
+
+                var sFileURL =
+                    URL.createObjectURL(oFile);
+
+                /* =========================
+                   UPLOAD HISTORY
+                ========================== */
+
                 var oModel =
                     this.getView()
                         .getModel("upload");
@@ -78,16 +89,48 @@ sap.ui.define([
                 );
 
                 /* =========================
-                IMAGE / VIDEO PREVIEW
+                   SHARED MODEL
+                ========================== */
+
+                var oSharedModel =
+                    sap.ui.getCore()
+                        .getModel("shared");
+
+                var aSharedFiles =
+                    oSharedModel.getProperty(
+                        "/uploadedFiles"
+                    );
+
+                aSharedFiles.push({
+
+                    fileName: oFile.name,
+
+                    fileType: oFile.type,
+
+                    fileSize:
+                        (oFile.size / 1024)
+                        .toFixed(2) + " KB",
+
+                    uploadDate:
+                        new Date()
+                        .toLocaleString(),
+
+                    fileURL: sFileURL
+                });
+
+                oSharedModel.setProperty(
+                    "/uploadedFiles",
+                    aSharedFiles
+                );
+
+                /* =========================
+                   PREVIEW
                 ========================== */
 
                 var oPreviewBox =
                     this.byId("previewBox");
 
                 oPreviewBox.removeAllItems();
-
-                var sFileURL =
-                    URL.createObjectURL(oFile);
 
                 if (
                     oFile.type.startsWith("image/")

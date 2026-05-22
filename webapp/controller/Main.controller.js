@@ -9,6 +9,18 @@ sap.ui.define([
 
             onInit: function () {
 
+                var oSharedModel =
+                    new sap.ui.model.json.JSONModel({
+
+                        uploadedFiles: []
+
+                    });
+
+                sap.ui.getCore().setModel(
+                    oSharedModel,
+                     "shared"
+                );
+
                 this._loadPage("Dashboard");
             },
 
