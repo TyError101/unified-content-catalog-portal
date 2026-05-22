@@ -272,7 +272,44 @@ sap.ui.define([
                     .setSelectedKey(
                         oData.category
                     );
-            }
+            },
+            onOpenImagePreview:
+                async function (oEvent) {
+
+                    var sImageURL =
+                        oEvent.getSource()
+                            .getSrc();
+
+                    if (!this.oPreviewDialog) {
+
+                        this.oPreviewDialog =
+                            await Fragment.load({
+
+                                name:
+                                "com.rishi.contentcatalogportal.view.fragments.ImagePreview",
+
+                                controller: this
+                            });
+
+                        this.getView()
+                            .addDependent(
+                                this.oPreviewDialog
+                            );
+                    }
+
+                    sap.ui.getCore()
+                        .byId("previewImage")
+                        .setSrc(sImageURL);
+
+                    this.oPreviewDialog.open();
+                },
+
+                onClosePreviewDialog:
+                function () {
+
+                    this.oPreviewDialog.close();
+                },
+
         }
     );
 });
