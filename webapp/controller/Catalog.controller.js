@@ -13,12 +13,74 @@ sap.ui.define([
 
             onInit: function () {
 
-                this.getView().setModel(
-
+                var oCatalogModel =
                     sap.ui.getCore()
-                        .getModel("catalog"),
+                        .getModel("catalog");
 
+                this.getView().setModel(
+                    oCatalogModel,
                     "catalog"
+                );
+
+                /* =========================
+                   SHARED MEDIA INTEGRATION
+                ========================== */
+
+                var oSharedModel =
+                    sap.ui.getCore()
+                        .getModel("shared");
+
+                var aUploadedFiles =
+                    oSharedModel.getProperty(
+                        "/uploadedFiles"
+                    );
+
+                var aCatalogItems =
+                    oCatalogModel.getProperty(
+                        "/items"
+                    );
+
+                aUploadedFiles.forEach(function (
+                    oFile,
+                    iIndex
+                ) {
+
+                    var bExists =
+                        aCatalogItems.some(function (
+                            oItem
+                        ) {
+
+                            return (
+                                oItem.name ===
+                                oFile.fileName
+                            );
+                        });
+
+                    if (!bExists) {
+
+                        aCatalogItems.push({
+
+                            id:
+                                "UP" +
+                                (iIndex + 1),
+
+                            name:
+                                oFile.fileName,
+
+                            category:
+                                oFile.fileType
+                                    .startsWith(
+                                        "image/"
+                                    )
+                                    ? "Image"
+                                    : "Video"
+                        });
+                    }
+                });
+
+                oCatalogModel.setProperty(
+                    "/items",
+                    aCatalogItems
                 );
 
                 this.editIndex = null;
@@ -80,16 +142,21 @@ sap.ui.define([
                     category: sCategory
                 };
 
-                // EDIT MODE
+                /* =========================
+                   EDIT MODE
+                ========================== */
 
                 if (this.editIndex !== null) {
 
-                    aItems[this.editIndex] = oItem;
+                    aItems[this.editIndex] =
+                        oItem;
 
                     this.editIndex = null;
                 }
 
-                // ADD MODE
+                /* =========================
+                   ADD MODE
+                ========================== */
 
                 else {
 
@@ -101,7 +168,9 @@ sap.ui.define([
                     aItems
                 );
 
-                // CLEAR FIELDS
+                /* =========================
+                   CLEAR FIELDS
+                ========================== */
 
                 sap.ui.getCore()
                     .byId("dialogInputId")
@@ -133,7 +202,9 @@ sap.ui.define([
                         .getParent();
 
                 var oContext =
-                    oItem.getBindingContext("catalog");
+                    oItem.getBindingContext(
+                        "catalog"
+                    );
 
                 var sPath =
                     oContext.getPath();
@@ -151,7 +222,9 @@ sap.ui.define([
                 );
             },
 
-            onEditItem: async function (oEvent) {
+            onEditItem: async function (
+                oEvent
+            ) {
 
                 var oItem =
                     oEvent.getSource()
@@ -159,7 +232,9 @@ sap.ui.define([
                         .getParent();
 
                 var oContext =
-                    oItem.getBindingContext("catalog");
+                    oItem.getBindingContext(
+                        "catalog"
+                    );
 
                 var sPath =
                     oContext.getPath();
@@ -191,7 +266,9 @@ sap.ui.define([
 
                 sap.ui.getCore()
                     .byId("dialogSelectCategory")
-                    .setSelectedKey(oData.category);
+                    .setSelectedKey(
+                        oData.category
+                    );
             }
         }
     );
