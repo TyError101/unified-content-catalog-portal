@@ -27,6 +27,11 @@ sap.ui.define([
                     oModel,
                     "upload"
                 );
+
+                sap.ui.getCore().setModel(
+                    oModel,
+                    "upload"
+                );
             },
 
             onProcessUpload: function () {

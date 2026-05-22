@@ -192,12 +192,14 @@ sap.ui.define([
 
             onDeleteItem: function (oEvent) {
 
-                var oModel =
+                var oCatalogModel =
                     this.getView()
                         .getModel("catalog");
 
-                var aItems =
-                    oModel.getProperty("/items");
+                var aCatalogItems =
+                    oCatalogModel.getProperty(
+                        "/items"
+                    );
 
                 var oItem =
                     oEvent.getSource()
@@ -217,12 +219,83 @@ sap.ui.define([
                         sPath.split("/")[2]
                     );
 
-                aItems.splice(iIndex, 1);
+                var oDeletedItem =
+                    aCatalogItems[iIndex];
 
-                oModel.setProperty(
-                    "/items",
-                    aItems
+                /* =========================
+                REMOVE FROM CATALOG
+                ========================== */
+
+                aCatalogItems.splice(
+                    iIndex,
+                    1
                 );
+
+                oCatalogModel.setProperty(
+                    "/items",
+                    aCatalogItems
+                );
+
+                /* =========================
+                REMOVE FROM SHARED MODEL
+                ========================== */
+
+                var oSharedModel =
+                    sap.ui.getCore()
+                        .getModel("shared");
+
+                var aSharedFiles =
+                    oSharedModel.getProperty(
+                        "/uploadedFiles"
+                    );
+
+                aSharedFiles =
+                    aSharedFiles.filter(function (
+                        oFile
+                    ) {
+
+                        return (
+                            oFile.fileName !==
+                            oDeletedItem.name
+                        );
+                    });
+
+                oSharedModel.setProperty(
+                    "/uploadedFiles",
+                    aSharedFiles
+                );
+
+                /* =========================
+                REMOVE FROM UPLOAD HISTORY
+                ========================== */
+
+                var oUploadModel =
+                    sap.ui.getCore()
+                        .getModel("upload");
+
+                if (oUploadModel) {
+
+                    var aUploads =
+                        oUploadModel.getProperty(
+                            "/uploads"
+                        );
+
+                    aUploads =
+                        aUploads.filter(function (
+                            oUpload
+                        ) {
+
+                            return (
+                                oUpload.fileName !==
+                                oDeletedItem.name
+                            );
+                        });
+
+                    oUploadModel.setProperty(
+                        "/uploads",
+                        aUploads
+                    );
+                }
             },
 
             onEditItem: async function (
