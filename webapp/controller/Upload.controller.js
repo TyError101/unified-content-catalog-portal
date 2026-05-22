@@ -77,6 +77,53 @@ sap.ui.define([
                     aUploads
                 );
 
+                /* =========================
+                IMAGE / VIDEO PREVIEW
+                ========================== */
+
+                var oPreviewBox =
+                    this.byId("previewBox");
+
+                oPreviewBox.removeAllItems();
+
+                var sFileURL =
+                    URL.createObjectURL(oFile);
+
+                if (
+                    oFile.type.startsWith("image/")
+                ) {
+
+                    var oImage =
+                        new sap.m.Image({
+
+                            src: sFileURL,
+
+                            width: "400px"
+                        });
+
+                    oPreviewBox.addItem(oImage);
+                }
+
+                else if (
+                    oFile.type.startsWith("video/")
+                ) {
+
+                    var oHTML =
+                        new sap.ui.core.HTML({
+
+                            content:
+                                "<video width='500' controls>" +
+                                "<source src='" +
+                                sFileURL +
+                                "' type='" +
+                                oFile.type +
+                                "'>" +
+                                "</video>"
+                        });
+
+                    oPreviewBox.addItem(oHTML);
+                }
+
                 MessageToast.show(
                     "File Uploaded Successfully"
                 );

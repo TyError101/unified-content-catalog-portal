@@ -22,7 +22,7 @@
 
                 <!-- HTML FILE INPUT -->
 
-                <core:HTML
+                <core:HTML id="_IDGenHTML1"
                     preferDOM="true"
                     content='&lt;input type="file" id="realFileInput" accept=".jpg,.jpeg,.png,.mp4" style="margin-top:10px;margin-bottom:20px;" /&gt;' />
                                 
@@ -78,6 +78,16 @@
                     </items>
 
                 </Table>
+
+                <VBox
+                    id="previewBox"
+                    class="sapUiLargeMarginTop">
+
+                    <Title id="_IDGenTitle4"
+                        text="Preview"
+                        level="H3" />
+
+                </VBox>
 
                 <!-- PROCESS BUTTON -->
 
