@@ -1,13 +1,93 @@
 <mvc:View
     controllerName="com.rishi.contentcatalogportal.controller.Upload"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
 
-    <Page id="_IDGenPage" title="Upload">
+    <Page id="_IDGenPage2" title="Upload Media">
 
         <content>
 
-            <Text id="_IDGenText2" text="Upload Loaded Successfully" />
+            <VBox id="_IDGenVBox4" class="sapUiMediumMargin">
+
+                <!-- HEADER -->
+
+                <Title id="_IDGenTitle2"
+                    text="Media Upload Center"
+                    level="H2" />
+
+                <Text id="_IDGenText2"
+                    text="Upload images, videos, and digital assets."
+                    class="sapUiSmallMarginBottom" />
+
+                <!-- HTML FILE INPUT -->
+
+                <core:HTML
+                    preferDOM="true"
+                    content='&lt;input type="file" id="realFileInput" accept=".jpg,.jpeg,.png,.mp4" style="margin-top:10px;margin-bottom:20px;" /&gt;' />
+                                
+                <!-- UPLOAD HISTORY -->
+
+                <Title id="_IDGenTitle3"
+                    text="Upload History"
+                    level="H3"
+                    class="sapUiLargeMarginTop" />
+
+                <Table id="_IDGenTable"
+                    items="{upload>/uploads}"
+                    class="sapUiMediumMarginTop">
+
+                    <columns>
+
+                        <Column id="_IDGenColumn4">
+                            <Text id="_IDGenText17" text="File Name" />
+                        </Column>
+
+                        <Column id="_IDGenColumn5">
+                            <Text id="_IDGenText18" text="Type" />
+                        </Column>
+
+                        <Column id="_IDGenColumn6">
+                            <Text id="_IDGenText19" text="Size" />
+                        </Column>
+
+                        <Column id="_IDGenColumn7">
+                            <Text id="_IDGenText20" text="Uploaded At" />
+                        </Column>
+
+                    </columns>
+
+                    <items>
+
+                        <ColumnListItem id="_IDGenColumnListItem1">
+
+                            <cells>
+
+                                <Text id="_IDGenText21" text="{upload>fileName}" />
+
+                                <Text id="_IDGenText22" text="{upload>fileType}" />
+
+                                <Text id="_IDGenText23" text="{upload>fileSize}" />
+
+                                <Text id="_IDGenText24" text="{upload>uploadDate}" />
+
+                            </cells>
+
+                        </ColumnListItem>
+
+                    </items>
+
+                </Table>
+
+                <!-- PROCESS BUTTON -->
+
+                <Button id="_IDGenButton"
+                    text="Process Upload"
+                    type="Emphasized"
+                    press="onProcessUpload"
+                    class="sapUiLargeMarginTop" />
+
+            </VBox>
 
         </content>
 
