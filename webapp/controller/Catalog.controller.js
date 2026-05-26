@@ -1,9 +1,13 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/ui/core/Fragment"
+    "sap/ui/core/Fragment",
+    "sap/ui/model/Filter",
+    "sap/ui/model/FilterOperator"
 ], function (
     Controller,
-    Fragment
+    Fragment,
+    Filter,
+    FilterOperator
 ) {
     "use strict";
 
@@ -223,7 +227,7 @@ sap.ui.define([
                     aCatalogItems[iIndex];
 
                 /* =========================
-                REMOVE FROM CATALOG
+                   REMOVE FROM CATALOG
                 ========================== */
 
                 aCatalogItems.splice(
@@ -237,7 +241,7 @@ sap.ui.define([
                 );
 
                 /* =========================
-                REMOVE FROM SHARED MODEL
+                   REMOVE FROM SHARED MODEL
                 ========================== */
 
                 var oSharedModel =
@@ -266,7 +270,7 @@ sap.ui.define([
                 );
 
                 /* =========================
-                REMOVE FROM UPLOAD HISTORY
+                   REMOVE FROM UPLOAD HISTORY
                 ========================== */
 
                 var oUploadModel =
@@ -346,43 +350,98 @@ sap.ui.define([
                         oData.category
                     );
             },
+
             onOpenImagePreview:
-                async function (oEvent) {
+            async function (oEvent) {
 
-                    var sImageURL =
-                        oEvent.getSource()
-                            .getSrc();
+                var sImageURL =
+                    oEvent.getSource()
+                        .getSrc();
 
-                    if (!this.oPreviewDialog) {
+                if (!this.oPreviewDialog) {
 
-                        this.oPreviewDialog =
-                            await Fragment.load({
+                    this.oPreviewDialog =
+                        await Fragment.load({
 
-                                name:
-                                "com.rishi.contentcatalogportal.view.fragments.ImagePreview",
+                            name:
+                            "com.rishi.contentcatalogportal.view.fragments.ImagePreview",
 
-                                controller: this
-                            });
+                            controller: this
+                        });
 
-                        this.getView()
-                            .addDependent(
-                                this.oPreviewDialog
-                            );
-                    }
+                    this.getView()
+                        .addDependent(
+                            this.oPreviewDialog
+                        );
+                }
 
-                    sap.ui.getCore()
-                        .byId("previewImage")
-                        .setSrc(sImageURL);
+                sap.ui.getCore()
+                    .byId("previewImage")
+                    .setSrc(sImageURL);
 
-                    this.oPreviewDialog.open();
-                },
+                this.oPreviewDialog.open();
+            },
 
-                onClosePreviewDialog:
-                function () {
+            onClosePreviewDialog:
+            function () {
 
-                    this.oPreviewDialog.close();
-                },
+                this.oPreviewDialog.close();
+            },
 
+            onSearchCatalog: function (oEvent) {
+
+                var sValue =
+                    oEvent.getParameter(
+                        "newValue"
+                    );
+
+                var oTable =
+                    this.byId("catalogTable");
+
+                var oBinding =
+                    oTable.getBinding("items");
+
+                var aFilters = [];
+
+                if (sValue) {
+
+                    var oNameFilter =
+                        new Filter(
+
+                            "name",
+
+                            FilterOperator.Contains,
+
+                            sValue
+                        );
+
+                    var oCategoryFilter =
+                        new Filter(
+
+                            "category",
+
+                            FilterOperator.Contains,
+
+                            sValue
+                        );
+
+                    aFilters.push(
+
+                        new Filter({
+
+                            filters: [
+
+                                oNameFilter,
+                                oCategoryFilter
+                            ],
+
+                            and: false
+                        })
+                    );
+                }
+
+                oBinding.filter(aFilters);
+            }
         }
     );
 });
