@@ -149,10 +149,6 @@ sap.ui.define([
                     category: sCategory
                 };
 
-                /* =========================
-                   EDIT MODE
-                ========================== */
-
                 if (this.editIndex !== null) {
 
                     aItems[this.editIndex] =
@@ -160,10 +156,6 @@ sap.ui.define([
 
                     this.editIndex = null;
                 }
-
-                /* =========================
-                   ADD MODE
-                ========================== */
 
                 else {
 
@@ -174,10 +166,6 @@ sap.ui.define([
                     "/items",
                     aItems
                 );
-
-                /* =========================
-                   CLEAR FIELDS
-                ========================== */
 
                 sap.ui.getCore()
                     .byId("dialogInputId")
@@ -225,10 +213,6 @@ sap.ui.define([
 
                 var oDeletedItem =
                     aCatalogItems[iIndex];
-
-                /* =========================
-                   REMOVE FROM CATALOG
-                ========================== */
 
                 aCatalogItems.splice(
                     iIndex,
@@ -388,12 +372,22 @@ sap.ui.define([
                 this.oPreviewDialog.close();
             },
 
-            onSearchCatalog: function (oEvent) {
+            onSearchCatalog: function () {
 
-                var sValue =
-                    oEvent.getParameter(
-                        "newValue"
-                    );
+                this.onFilterCategory();
+            },
+
+            onFilterCategory: function () {
+
+                var sSearchValue =
+                    this.byId(
+                        "_IDGenSearchField"
+                    ).getValue();
+
+                var sCategory =
+                    this.byId(
+                        "categoryFilter"
+                    ).getSelectedKey();
 
                 var oTable =
                     this.byId("catalogTable");
@@ -403,7 +397,11 @@ sap.ui.define([
 
                 var aFilters = [];
 
-                if (sValue) {
+                /* =========================
+                   SEARCH FILTER
+                ========================== */
+
+                if (sSearchValue) {
 
                     var oNameFilter =
                         new Filter(
@@ -412,17 +410,17 @@ sap.ui.define([
 
                             FilterOperator.Contains,
 
-                            sValue
+                            sSearchValue
                         );
 
-                    var oCategoryFilter =
+                    var oCategorySearchFilter =
                         new Filter(
 
                             "category",
 
                             FilterOperator.Contains,
 
-                            sValue
+                            sSearchValue
                         );
 
                     aFilters.push(
@@ -432,11 +430,33 @@ sap.ui.define([
                             filters: [
 
                                 oNameFilter,
-                                oCategoryFilter
+                                oCategorySearchFilter
                             ],
 
                             and: false
                         })
+                    );
+                }
+
+                /* =========================
+                   CATEGORY FILTER
+                ========================== */
+
+                if (
+                    sCategory &&
+                    sCategory !== "All"
+                ) {
+
+                    aFilters.push(
+
+                        new Filter(
+
+                            "category",
+
+                            FilterOperator.EQ,
+
+                            sCategory
+                        )
                     );
                 }
 
