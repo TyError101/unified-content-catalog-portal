@@ -27,6 +27,10 @@ sap.ui.define([
                     sap.ui.getCore()
                         .getModel("catalog");
 
+                var oUploadModel =
+                    sap.ui.getCore()
+                        .getModel("upload");
+
                 if (!oCatalogModel) {
                     return;
                 }
@@ -35,6 +39,16 @@ sap.ui.define([
                     oCatalogModel.getProperty(
                         "/items"
                     ) || [];
+
+                var aUploads = [];
+
+                if (oUploadModel) {
+
+                    aUploads =
+                        oUploadModel.getProperty(
+                            "/uploads"
+                        ) || [];
+                }
 
                 var iImages = 0;
                 var iVideos = 0;
@@ -48,6 +62,7 @@ sap.ui.define([
                         oItem.category ===
                         "Image"
                     ) {
+
                         iImages++;
                     }
 
@@ -55,6 +70,7 @@ sap.ui.define([
                         oItem.category ===
                         "Video"
                     ) {
+
                         iVideos++;
                     }
 
@@ -62,6 +78,7 @@ sap.ui.define([
                         oItem.category ===
                         "Document"
                     ) {
+
                         iDocuments++;
                     }
                 });
@@ -79,7 +96,29 @@ sap.ui.define([
                             iVideos,
 
                         totalDocuments:
-                            iDocuments
+                            iDocuments,
+
+                        recentUploads:
+                            aUploads.slice().reverse(),
+
+                        mediaDistribution: [
+
+                            {
+                                category: "Images",
+                                count: iImages
+                            },
+
+                            {
+                                category: "Videos",
+                                count: iVideos
+                            },
+
+                            {
+                                category: "Documents",
+                                count: iDocuments
+                            }
+
+                        ]
                     });
 
                 this.getView().setModel(

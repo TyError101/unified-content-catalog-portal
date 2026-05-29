@@ -90,7 +90,11 @@
 
         "sap.ui.core": {},
 
-        "sap.tnt": {}
+        "sap.tnt": {},
+
+        "sap.ui.unified": {},
+
+        "sap.viz": {}
 
         
       }
