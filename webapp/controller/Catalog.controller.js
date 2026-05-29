@@ -93,7 +93,32 @@ sap.ui.define([
                 this.editIndex = null;
             },
 
-            onOpenDialog: async function () {
+            /* =========================
+               SAVE TO LOCAL STORAGE
+            ========================== */
+
+            saveCatalogToStorage:
+            function () {
+
+                var oCatalogModel =
+                    this.getView()
+                        .getModel("catalog");
+
+                localStorage.setItem(
+
+                    "catalogItems",
+
+                    JSON.stringify(
+
+                        oCatalogModel.getProperty(
+                            "/items"
+                        )
+                    )
+                );
+            },
+
+            onOpenDialog:
+            async function () {
 
                 if (!this.oDialog) {
 
@@ -113,12 +138,14 @@ sap.ui.define([
                 this.oDialog.open();
             },
 
-            onCloseDialog: function () {
+            onCloseDialog:
+            function () {
 
                 this.oDialog.close();
             },
 
-            onSaveItem: function () {
+            onSaveItem:
+            function () {
 
                 var oModel =
                     this.getView()
@@ -167,6 +194,8 @@ sap.ui.define([
                     aItems
                 );
 
+                this.saveCatalogToStorage();
+
                 sap.ui.getCore()
                     .byId("dialogInputId")
                     .setValue("");
@@ -182,7 +211,8 @@ sap.ui.define([
                 this.oDialog.close();
             },
 
-            onDeleteItem: function (oEvent) {
+            onDeleteItem:
+            function (oEvent) {
 
                 var oCatalogModel =
                     this.getView()
@@ -214,6 +244,10 @@ sap.ui.define([
                 var oDeletedItem =
                     aCatalogItems[iIndex];
 
+                /* =========================
+                   REMOVE FROM CATALOG
+                ========================== */
+
                 aCatalogItems.splice(
                     iIndex,
                     1
@@ -223,6 +257,8 @@ sap.ui.define([
                     "/items",
                     aCatalogItems
                 );
+
+                this.saveCatalogToStorage();
 
                 /* =========================
                    REMOVE FROM SHARED MODEL
@@ -251,6 +287,15 @@ sap.ui.define([
                 oSharedModel.setProperty(
                     "/uploadedFiles",
                     aSharedFiles
+                );
+
+                localStorage.setItem(
+
+                    "sharedUploads",
+
+                    JSON.stringify(
+                        aSharedFiles
+                    )
                 );
 
                 /* =========================
@@ -283,12 +328,20 @@ sap.ui.define([
                         "/uploads",
                         aUploads
                     );
+
+                    localStorage.setItem(
+
+                        "uploadHistory",
+
+                        JSON.stringify(
+                            aUploads
+                        )
+                    );
                 }
             },
 
-            onEditItem: async function (
-                oEvent
-            ) {
+            onEditItem:
+            async function (oEvent) {
 
                 var oItem =
                     oEvent.getSource()
@@ -372,12 +425,14 @@ sap.ui.define([
                 this.oPreviewDialog.close();
             },
 
-            onSearchCatalog: function () {
+            onSearchCatalog:
+            function () {
 
                 this.onFilterCategory();
             },
 
-            onFilterCategory: function () {
+            onFilterCategory:
+            function () {
 
                 var sSearchValue =
                     this.byId(

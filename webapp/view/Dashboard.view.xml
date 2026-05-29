@@ -3,75 +3,77 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m">
 
-    <Page id="_IDGenPage3" title="Dashboard">
+    <Page id="_IDGenPage" title="Dashboard">
 
         <content>
 
             <VBox id="_IDGenVBox" class="sapUiMediumMargin">
 
-                <!-- TITLE -->
-
                 <Title id="_IDGenTitle"
-                    text="Unified Content &amp; Catalog Management Portal"
+                    text="Analytics Dashboard"
                     level="H1" />
 
                 <Text id="_IDGenText1"
-                    text="Welcome to the SAPUI5 media and catalog management application."
-                    class="sapUiSmallMarginTop" />
+                    text="Media &amp; Catalog Insights"
+                    class="sapUiSmallMarginBottom" />
 
-                <!-- MODULE PANEL -->
+                <HBox id="_IDGenHBox1"
+                    wrap="Wrap"
+                    class="sapUiMediumMarginTop">
 
-                <Panel id="_IDGenPanel"
-                    headerText="Application Modules"
-                    class="sapUiLargeMarginTop">
+                    <GenericTile id="_IDGenGenericTile"
+                        header="Total Items"
+                        class="sapUiSmallMargin">
 
-                    <VBox id="_IDGenVBox1" class="sapUiMediumMargin">
+                        <TileContent id="_IDGenTileContent">
 
-                        <Text id="_IDGenText3"
-                            text="• Catalog Management" />
+                            <NumericContent id="_IDGenNumericContent1"
+                                value="{analytics>/totalItems}" />
 
-                        <Text id="_IDGenText4"
-                            text="• Media Upload Center"
-                            class="sapUiTinyMarginTop" />
+                        </TileContent>
 
-                        <Text id="_IDGenText5"
-                            text="• Upload History Tracking"
-                            class="sapUiTinyMarginTop" />
+                    </GenericTile>
 
-                        <Text id="_IDGenText6"
-                            text="• Search and CRUD Operations"
-                            class="sapUiTinyMarginTop" />
+                    <GenericTile id="_IDGenGenericTile1"
+                        header="Images"
+                        class="sapUiSmallMargin">
 
-                    </VBox>
+                        <TileContent id="_IDGenTileContent1">
 
-                </Panel>
+                            <NumericContent id="_IDGenNumericContent2"
+                                value="{analytics>/totalImages}" />
 
-                <!-- SYSTEM INFO -->
+                        </TileContent>
 
-                <Panel id="_IDGenPanel1"
-                    headerText="System Information"
-                    class="sapUiLargeMarginTop">
+                    </GenericTile>
 
-                    <VBox id="_IDGenVBox2" class="sapUiMediumMargin">
+                    <GenericTile id="_IDGenGenericTile2"
+                        header="Videos"
+                        class="sapUiSmallMargin">
 
-                        <Text id="_IDGenText7"
-                            text="Framework: SAPUI5" />
+                        <TileContent id="_IDGenTileContent2">
 
-                        <Text id="_IDGenText8"
-                            text="Architecture: MVC"
-                            class="sapUiTinyMarginTop" />
+                            <NumericContent id="_IDGenNumericContent3"
+                                value="{analytics>/totalVideos}" />
 
-                        <Text id="_IDGenText9"
-                            text="UI Type: Responsive Web Application"
-                            class="sapUiTinyMarginTop" />
+                        </TileContent>
 
-                        <Text id="_IDGenText10"
-                            text="Current Version: 1.0"
-                            class="sapUiTinyMarginTop" />
+                    </GenericTile>
 
-                    </VBox>
+                    <GenericTile id="_IDGenGenericTile3"
+                        header="Documents"
+                        class="sapUiSmallMargin">
 
-                </Panel>
+                        <TileContent id="_IDGenTileContent3">
+
+                            <NumericContent id="_IDGenNumericContent4"
+                                value="{analytics>/totalDocuments}" />
+
+                        </TileContent>
+
+                    </GenericTile>
+
+                </HBox>
 
             </VBox>
 

@@ -26,49 +26,91 @@ sap.ui.define([
                     arguments
                 );
 
-                // DEVICE MODEL
+                /* =========================
+                   DEVICE MODEL
+                ========================== */
 
                 this.setModel(
                     models.createDeviceModel(),
                     "device"
                 );
 
-                // CATALOG MODEL
+                /* =========================
+                   LOAD LOCAL STORAGE
+                ========================== */
 
-                var oCatalogData = {
+                var aSavedCatalog =
+                    JSON.parse(
 
-                    items: [
+                        localStorage.getItem(
+                            "catalogItems"
+                        )
+
+                    ) || [
+
                         {
                             id: "P1001",
                             name: "Marketing Banner",
                             category: "Image"
                         },
+
                         {
                             id: "P1002",
                             name: "Company Brochure",
                             category: "Document"
                         }
-                    ]
+                    ];
+
+                /* =========================
+                   CATALOG MODEL
+                ========================== */
+
+                var oCatalogData = {
+
+                    items: aSavedCatalog
                 };
 
                 var oCatalogModel =
                     new JSONModel(oCatalogData);
-
-                // COMPONENT MODEL
 
                 this.setModel(
                     oCatalogModel,
                     "catalog"
                 );
 
-                // GLOBAL MODEL
-
                 sap.ui.getCore().setModel(
                     oCatalogModel,
                     "catalog"
                 );
 
-                // ROUTER
+                /* =========================
+                   SHARED MODEL
+                ========================== */
+
+                var aSavedUploads =
+                    JSON.parse(
+
+                        localStorage.getItem(
+                            "sharedUploads"
+                        )
+
+                    ) || [];
+
+                var oSharedModel =
+                    new JSONModel({
+
+                        uploadedFiles:
+                            aSavedUploads
+                    });
+
+                sap.ui.getCore().setModel(
+                    oSharedModel,
+                    "shared"
+                );
+
+                /* =========================
+                   ROUTER
+                ========================== */
 
                 this.getRouter().initialize();
             }

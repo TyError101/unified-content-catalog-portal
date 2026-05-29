@@ -15,9 +15,18 @@ sap.ui.define([
 
             onInit: function () {
 
+                var aSavedUploads =
+                    JSON.parse(
+
+                        localStorage.getItem(
+                            "uploadHistory"
+                        )
+
+                    ) || [];
+
                 var oData = {
 
-                    uploads: []
+                    uploads: aSavedUploads
                 };
 
                 var oModel =
@@ -52,10 +61,6 @@ sap.ui.define([
 
                     return;
                 }
-
-                /* =========================
-                   FILE URL
-                ========================== */
 
                 var sFileURL =
                     URL.createObjectURL(oFile);
@@ -94,6 +99,17 @@ sap.ui.define([
                 );
 
                 /* =========================
+                   SAVE UPLOAD HISTORY
+                ========================== */
+
+                localStorage.setItem(
+
+                    "uploadHistory",
+
+                    JSON.stringify(aUploads)
+                );
+
+                /* =========================
                    SHARED MODEL
                 ========================== */
 
@@ -128,6 +144,17 @@ sap.ui.define([
                 oSharedModel.setProperty(
                     "/uploadedFiles",
                     aSharedFiles
+                );
+
+                /* =========================
+                   SAVE SHARED MODEL
+                ========================== */
+
+                localStorage.setItem(
+
+                    "sharedUploads",
+
+                    JSON.stringify(aSharedFiles)
                 );
 
                 /* =========================
@@ -173,6 +200,26 @@ sap.ui.define([
 
                     oPreviewBox.addItem(oHTML);
                 }
+
+                /* =========================
+                   SAVE CATALOG
+                ========================== */
+
+                var oCatalogModel =
+                    sap.ui.getCore()
+                        .getModel("catalog");
+
+                localStorage.setItem(
+
+                    "catalogItems",
+
+                    JSON.stringify(
+
+                        oCatalogModel.getProperty(
+                            "/items"
+                        )
+                    )
+                );
 
                 MessageToast.show(
                     "File Uploaded Successfully"
