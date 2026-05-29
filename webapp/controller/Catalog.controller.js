@@ -2,12 +2,19 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/core/Fragment",
     "sap/ui/model/Filter",
-    "sap/ui/model/FilterOperator"
+    "sap/ui/model/FilterOperator",
+    "sap/m/MessageToast",
+    "sap/ui/export/Spreadsheet",
+    "sap/ui/unified/FileUploader"
 ], function (
     Controller,
     Fragment,
     Filter,
-    FilterOperator
+    FilterOperator,
+    MessageToast,
+    Spreadsheet,
+    FileUploader
+
 ) {
     "use strict";
 
@@ -424,6 +431,226 @@ sap.ui.define([
 
                 this.oPreviewDialog.close();
             },
+
+            onExportCSV: function () {
+
+                var oModel =
+                    this.getView()
+                        .getModel("catalog");
+
+                var aItems =
+                    oModel.getProperty("/items");
+
+                var sCSV =
+                    "ID,Name,Category\n";
+
+                aItems.forEach(function (
+                    oItem
+                ) {
+
+                    sCSV +=
+                        '"' + oItem.id + '",' +
+                        '"' + oItem.name + '",' +
+                        '"' + oItem.category + '"\n';
+                });
+
+                var oBlob =
+                    new Blob(
+                        [sCSV],
+                        {
+                            type:
+                                "text/csv;charset=utf-8;"
+                        }
+                    );
+
+                var sUrl =
+                    URL.createObjectURL(
+                        oBlob
+                    );
+
+                var oLink =
+                    document.createElement("a");
+
+                oLink.href =
+                    sUrl;
+
+                oLink.download =
+                    "catalog.csv";
+
+                document.body.appendChild(
+                    oLink
+                );
+
+                oLink.click();
+
+                document.body.removeChild(
+                    oLink
+                );
+
+                URL.revokeObjectURL(
+                    sUrl
+                );
+
+                MessageToast.show(
+                    "Catalog exported successfully"
+                );
+            },
+
+            onExportExcel: function () {
+
+                var oModel =
+                    this.getView()
+                        .getModel("catalog");
+
+                var aItems =
+                    oModel.getProperty("/items");
+
+                var aCols = [
+
+                    {
+                        label: "ID",
+                        property: "id",
+                        type: "string"
+                    },
+
+                    {
+                        label: "Name",
+                        property: "name",
+                        type: "string"
+                    },
+
+                    {
+                        label: "Category",
+                        property: "category",
+                        type: "string"
+                    }
+                ];
+
+                var oSettings = {
+
+                    workbook: {
+
+                        columns: aCols
+                    },
+
+                    dataSource:
+                        aItems,
+
+                    fileName:
+                        "catalog.xlsx"
+                };
+
+                var oSpreadsheet =
+                    new Spreadsheet(
+                        oSettings
+                    );
+
+                oSpreadsheet
+                    .build()
+                    .finally(function () {
+
+                        oSpreadsheet.destroy();
+                    });
+
+                MessageToast.show(
+                    "Excel export started"
+                );
+            },
+
+            onImportCSV: function () {
+
+                var oInput =
+                    document.createElement("input");
+
+                oInput.type = "file";
+                oInput.accept = ".csv";
+
+                oInput.onchange = function (oEvent) {
+
+                    var oFile =
+                        oEvent.target.files[0];
+
+                    if (!oFile) {
+                        return;
+                    }
+
+                    var oReader =
+                        new FileReader();
+
+                    oReader.onload =
+                        function (e) {
+
+                            var sCSV =
+                                e.target.result;
+
+                            var aRows =
+                                sCSV.split("\n");
+
+                            var oModel =
+                                this.getView()
+                                    .getModel("catalog");
+
+                            var aItems =
+                                oModel.getProperty(
+                                    "/items"
+                                );
+
+                            for (
+                                var i = 1;
+                                i < aRows.length;
+                                i++
+                            ) {
+
+                                var sRow =
+                                    aRows[i].trim();
+
+                                if (!sRow) {
+                                    continue;
+                                }
+
+                                var aCols =
+                                    sRow.replaceAll(
+                                        "\"",
+                                        ""
+                                    ).split(",");
+
+                                if (
+                                    aCols.length >= 3
+                                ) {
+
+                                    aItems.push({
+
+                                        id: aCols[0],
+
+                                        name: aCols[1],
+
+                                        category: aCols[2]
+                                    });
+                                }
+                            }
+
+                            oModel.setProperty(
+                                "/items",
+                                aItems
+                            );
+
+                            this.saveCatalogToStorage();
+
+                            MessageToast.show(
+                                "CSV imported successfully"
+                            );
+
+                        }.bind(this);
+
+                    oReader.readAsText(
+                        oFile
+                    );
+
+                }.bind(this);
+
+                oInput.click();
+            },
+
 
             onSearchCatalog:
             function () {

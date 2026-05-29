@@ -14,8 +14,6 @@
                 id="_IDGenVBox3"
                 class="sapUiMediumMargin">
 
-                <!-- HEADER -->
-
                 <Toolbar id="_IDGenToolbar">
 
                     <Title
@@ -26,15 +24,11 @@
                     <ToolbarSpacer
                         id="_IDGenToolbarSpacer" />
 
-                    <!-- SEARCH -->
-
                     <SearchField
                         id="_IDGenSearchField"
                         width="300px"
                         liveChange="onSearchCatalog"
                         placeholder="Search catalog..." />
-
-                    <!-- CATEGORY FILTER -->
 
                     <Select
                         id="categoryFilter"
@@ -44,19 +38,19 @@
 
                         <items>
 
-                            <core:Item id="_IDGenItem1"
+                            <core:Item id="_IDGenItem"
                                 key="All"
                                 text="All Categories" />
 
-                            <core:Item id="_IDGenItem2"
+                            <core:Item id="_IDGenItem1"
                                 key="Image"
                                 text="Image" />
 
-                            <core:Item id="_IDGenItem6"
+                            <core:Item id="_IDGenItem2"
                                 key="Video"
                                 text="Video" />
 
-                            <core:Item id="_IDGenItem7"
+                            <core:Item id="_IDGenItem6"
                                 key="Document"
                                 text="Document" />
 
@@ -64,7 +58,26 @@
 
                     </Select>
 
-                    <!-- ADD BUTTON -->
+                    <Button
+                        id="_IDGenButtonExport"
+                        text="Export CSV"
+                        icon="sap-icon://download"
+                        press="onExportCSV"
+                        class="sapUiTinyMarginBegin" />
+
+                    <Button
+                        id="_IDGenButtonExcel"
+                        text="Export Excel"
+                        icon="sap-icon://excel-attachment"
+                        press="onExportExcel"
+                        class="sapUiTinyMarginBegin" />
+
+                    <Button
+                        id="_IDGenButtonImport"
+                        text="Import CSV"
+                        icon="sap-icon://upload"
+                        press="onImportCSV"
+                        class="sapUiTinyMarginBegin" />
 
                     <Button
                         id="_IDGenButton3"
@@ -74,8 +87,6 @@
                         class="sapUiTinyMarginBegin" />
 
                 </Toolbar>
-
-                <!-- TABLE -->
 
                 <Table
                     id="catalogTable"
@@ -88,40 +99,35 @@
                             id="_IDGenColumn9"
                             width="120px">
 
-                            <Text
-                                id="_IDGenText25"
+                            <Text id="_IDGenText"
                                 text="Preview" />
 
                         </Column>
 
                         <Column id="_IDGenColumn">
 
-                            <Text
-                                id="_IDGenText"
+                            <Text id="_IDGenText1"
                                 text="ID" />
 
                         </Column>
 
                         <Column id="_IDGenColumn1">
 
-                            <Text
-                                id="_IDGenText11"
+                            <Text id="_IDGenText11"
                                 text="Name" />
 
                         </Column>
 
                         <Column id="_IDGenColumn2">
 
-                            <Text
-                                id="_IDGenText12"
+                            <Text id="_IDGenText12"
                                 text="Category" />
 
                         </Column>
 
                         <Column id="_IDGenColumn3">
 
-                            <Text
-                                id="_IDGenText13"
+                            <Text id="_IDGenText13"
                                 text="Actions" />
 
                         </Column>
@@ -130,13 +136,11 @@
 
                     <items>
 
-                        <ColumnListItem
-                            id="_IDGenColumnListItem">
+                        <ColumnListItem id="_IDGenColumnListItem">
 
                             <cells>
 
-                                <Image
-                                    id="_IDGenImage"
+                                <Image id="_IDGenImage"
                                     src="{catalog>thumbnail}"
                                     width="80px"
                                     height="60px"
@@ -144,28 +148,23 @@
                                     decorative="false"
                                     visible="{= ${catalog>thumbnail} ? true : false }" />
 
-                                <Text
-                                    id="_IDGenText14"
+                                <Text id="_IDGenText14"
                                     text="{catalog>id}" />
 
-                                <Text
-                                    id="_IDGenText15"
+                                <Text id="_IDGenText15"
                                     text="{catalog>name}" />
 
-                                <Text
-                                    id="_IDGenText16"
+                                <Text id="_IDGenText16"
                                     text="{catalog>category}" />
 
                                 <HBox id="_IDGenHBox">
 
-                                    <Button
-                                        id="_IDGenButton6"
+                                    <Button id="_IDGenButton6"
                                         text="Edit"
                                         type="Emphasized"
                                         press="onEditItem" />
 
-                                    <Button
-                                        id="_IDGenButton7"
+                                    <Button id="_IDGenButton7"
                                         text="Delete"
                                         type="Reject"
                                         press="onDeleteItem"
