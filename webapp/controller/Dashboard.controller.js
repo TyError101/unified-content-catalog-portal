@@ -19,6 +19,29 @@ sap.ui.define([
             onAfterRendering: function () {
 
                 this._loadAnalytics();
+
+                var oChart =
+                    this.byId("mediaChart");
+
+                if (oChart) {
+
+                    oChart.setVizProperties({
+
+                        title: {
+                            visible: false
+                        },
+
+                        legend: {
+                            visible: true
+                        },
+
+                        plotArea: {
+                            dataLabel: {
+                                visible: true
+                            }
+                        }
+                    });
+                }
             },
 
             _loadAnalytics: function () {

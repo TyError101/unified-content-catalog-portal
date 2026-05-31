@@ -6,25 +6,26 @@
 
     <tnt:ToolPage id="toolPage">
 
-        <!-- SIDE NAVIGATION -->
-
         <tnt:sideContent>
 
             <tnt:SideNavigation id="_IDGenSideNavigation">
 
                 <tnt:NavigationList id="_IDGenNavigationList">
 
-                    <tnt:NavigationListItem id="_IDGenNavigationListItem1"
+                    <tnt:NavigationListItem
+                        id="_IDGenNavigationListItem1"
                         text="Dashboard"
                         icon="sap-icon://home"
                         select="onDashboardPress" />
 
-                    <tnt:NavigationListItem id="_IDGenNavigationListItem2"
+                    <tnt:NavigationListItem
+                        id="_IDGenNavigationListItem2"
                         text="Catalog"
                         icon="sap-icon://table-view"
                         select="onCatalogPress" />
 
-                    <tnt:NavigationListItem id="_IDGenNavigationListItem3"
+                    <tnt:NavigationListItem
+                        id="_IDGenNavigationListItem3"
                         text="Upload"
                         icon="sap-icon://upload"
                         select="onUploadPress" />
@@ -34,8 +35,6 @@
             </tnt:SideNavigation>
 
         </tnt:sideContent>
-
-        <!-- MAIN CONTENT -->
 
         <tnt:mainContents>
 

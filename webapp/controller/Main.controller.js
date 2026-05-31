@@ -18,10 +18,20 @@ sap.ui.define([
 
                 sap.ui.getCore().setModel(
                     oSharedModel,
-                     "shared"
+                    "shared"
                 );
 
                 this._loadPage("Dashboard");
+            },
+
+            onAfterRendering: function () {
+
+                if (!this._bInitialPageLoaded) {
+
+                    this._loadPage("Dashboard");
+
+                    this._bInitialPageLoaded = true;
+                }
             },
 
             onDashboardPress: function () {

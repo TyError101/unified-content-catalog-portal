@@ -16,85 +16,84 @@
                 id="_IDGenVBox"
                 class="sapUiMediumMargin">
 
-                <Title
-                    id="_IDGenTitle"
+                <Title id="_IDGenTitle"
                     text="Analytics Dashboard"
                     level="H1" />
 
-                <Text
-                    id="_IDGenText3"
+                <Text id="_IDGenText4"
                     text="Media and Catalog Insights"
                     class="sapUiSmallMarginBottom" />
 
-                <!-- KPI CARDS -->
+                <Panel id="_IDGenPanel"
+                    headerText="Key Metrics"
+                    class="sapUiLargeMarginTop">
 
-                <HBox
-                    id="_IDGenHBox1"
-                    wrap="Wrap"
-                    class="sapUiMediumMarginTop">
+                    <HBox id="_IDGenHBox1"
+                        wrap="Wrap"
+                        justifyContent="SpaceAround"
+                        class="sapUiMediumMargin">
 
-                    <GenericTile
-                        id="_IDGenGenericTile"
-                        header="Total Items"
-                        class="sapUiSmallMargin">
+                        <GenericTile id="_IDGenGenericTile"
+                            header="Total Items"
+                            frameType="OneByHalf"
+                            class="sapUiSmallMargin">
 
-                        <TileContent id="_IDGenTileContent">
+                            <TileContent id="_IDGenTileContent">
 
-                            <NumericContent id="_IDGenNumericContent"
-                                value="{analytics>/totalItems}" />
+                                <NumericContent id="_IDGenNumericContent"
+                                    value="{analytics>/totalItems}" />
 
-                        </TileContent>
+                            </TileContent>
 
-                    </GenericTile>
+                        </GenericTile>
 
-                    <GenericTile
-                        id="_IDGenGenericTile1"
-                        header="Images"
-                        class="sapUiSmallMargin">
+                        <GenericTile id="_IDGenGenericTile1"
+                            header="Images"
+                            frameType="OneByHalf"
+                            class="sapUiSmallMargin">
 
-                        <TileContent id="_IDGenTileContent1">
+                            <TileContent id="_IDGenTileContent1">
 
-                            <NumericContent id="_IDGenNumericContent1"
-                                value="{analytics>/totalImages}" />
+                                <NumericContent id="_IDGenNumericContent1"
+                                    value="{analytics>/totalImages}" />
 
-                        </TileContent>
+                            </TileContent>
 
-                    </GenericTile>
+                        </GenericTile>
 
-                    <GenericTile
-                        id="_IDGenGenericTile2"
-                        header="Videos"
-                        class="sapUiSmallMargin">
+                        <GenericTile id="_IDGenGenericTile2"
+                            header="Videos"
+                            frameType="OneByHalf"
+                            class="sapUiSmallMargin">
 
-                        <TileContent id="_IDGenTileContent2">
+                            <TileContent id="_IDGenTileContent2">
 
-                            <NumericContent id="_IDGenNumericContent2"
-                                value="{analytics>/totalVideos}" />
+                                <NumericContent id="_IDGenNumericContent2"
+                                    value="{analytics>/totalVideos}" />
 
-                        </TileContent>
+                            </TileContent>
 
-                    </GenericTile>
+                        </GenericTile>
 
-                    <GenericTile
-                        id="_IDGenGenericTile3"
-                        header="Documents"
-                        class="sapUiSmallMargin">
+                        <GenericTile id="_IDGenGenericTile3"
+                            header="Documents"
+                            frameType="OneByHalf"
+                            class="sapUiSmallMargin">
 
-                        <TileContent id="_IDGenTileContent3">
+                            <TileContent id="_IDGenTileContent3">
 
-                            <NumericContent id="_IDGenNumericContent3"
-                                value="{analytics>/totalDocuments}" />
+                                <NumericContent id="_IDGenNumericContent3"
+                                    value="{analytics>/totalDocuments}" />
 
-                        </TileContent>
+                            </TileContent>
 
-                    </GenericTile>
+                        </GenericTile>
 
-                </HBox>
+                    </HBox>
 
-                <!-- DONUT CHART -->
+                </Panel>
 
-                <Panel
-                    id="_IDGenPanelChart"
+                <Panel id="_IDGenPanel1"
                     headerText="Media Distribution"
                     class="sapUiLargeMarginTop">
 
@@ -102,7 +101,7 @@
                         id="mediaChart"
                         vizType="donut"
                         width="100%"
-                        height="400px">
+                        height="300px">
 
                         <viz:dataset>
 
@@ -147,33 +146,29 @@
 
                 </Panel>
 
-                <!-- RECENT UPLOADS -->
-
-                <Panel
-                    id="_IDGenPanel"
+                <Panel id="_IDGenPanel2"
                     headerText="Recent Uploads"
                     class="sapUiLargeMarginTop">
 
-                    <Table
-                        id="_IDGenTable1"
+                    <Table id="_IDGenTable1"
                         items="{analytics>/recentUploads}">
 
                         <columns>
 
                             <Column id="_IDGenColumn8">
-                                <Text id="_IDGenText4" text="File Name" />
+                                <Text id="_IDGenText5" text="File Name" />
                             </Column>
 
                             <Column id="_IDGenColumn10">
-                                <Text id="_IDGenText5" text="Type" />
+                                <Text id="_IDGenText6" text="Type" />
                             </Column>
 
                             <Column id="_IDGenColumn11">
-                                <Text id="_IDGenText6" text="Size" />
+                                <Text id="_IDGenText7" text="Size" />
                             </Column>
 
                             <Column id="_IDGenColumn12">
-                                <Text id="_IDGenText7" text="Uploaded At" />
+                                <Text id="_IDGenText8" text="Uploaded At" />
                             </Column>
 
                         </columns>
@@ -184,17 +179,13 @@
 
                                 <cells>
 
-                                    <Text id="_IDGenText8"
-                                        text="{analytics>fileName}" />
+                                    <Text id="_IDGenText9" text="{analytics>fileName}" />
 
-                                    <Text id="_IDGenText9"
-                                        text="{analytics>fileType}" />
+                                    <Text id="_IDGenText10" text="{analytics>fileType}" />
 
-                                    <Text id="_IDGenText10"
-                                        text="{analytics>fileSize}" />
+                                    <Text id="_IDGenText25" text="{analytics>fileSize}" />
 
-                                    <Text id="_IDGenText26"
-                                        text="{analytics>uploadDate}" />
+                                    <Text id="_IDGenText26" text="{analytics>uploadDate}" />
 
                                 </cells>
 

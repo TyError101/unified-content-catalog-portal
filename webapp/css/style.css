@@ -1,0 +1,96 @@
+/* GLOBAL APP BACKGROUND */
+
+.sapTntToolPage {
+    background-color: #f5f7fa;
+}
+
+/* SIDE NAVIGATION */
+
+.sapTntSideNavigation {
+    background: #ffffff;
+    border-right: 1px solid #dfe3e8;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.05);
+}
+
+/* PAGE TITLES */
+
+.sapMTitle {
+    font-weight: 600;
+}
+
+/* KPI CARDS */
+
+.sapMGenericTile {
+    border-radius: 16px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: all 0.2s ease;
+}
+
+.sapMGenericTile:hover {
+    transform: translateY(-3px);
+}
+
+/* TABLES */
+
+.sapMListTbl {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* PANELS */
+
+.sapMPanel {
+    border-radius: 12px;
+}
+
+/* BUTTONS */
+
+.sapMBtn {
+    border-radius: 8px;
+}
+
+/* UPLOAD PREVIEW */
+
+.sapMImg {
+    border-radius: 8px;
+}
+
+/* GENERAL SPACING */
+
+.sapUiMediumMargin {
+    padding: 4px;
+}
+
+/* ==========================
+   SIDEBAR
+========================== */
+
+.sideNavContainer {
+    background: #ffffff;
+    border-right: 1px solid #dfe3e8;
+}
+
+/* ==========================
+   USER CARD
+========================== */
+
+.userCard {
+    margin-top: auto;
+    padding: 16px;
+    border-radius: 12px;
+    background: #f8fafc;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+/* ==========================
+   NAVIGATION
+========================== */
+
+.sapTntNavLIItemSelected {
+    border-left: 4px solid #0a6ed1 !important;
+}
+
+.sapTntNavLIItem:hover {
+    background-color: #eef5ff;
+}
